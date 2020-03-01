@@ -1,0 +1,11 @@
+.navbar {
+    background-color: #FFEAEA;
+}
+
+.navbar-menu {
+    justify-content: center;
+}
+
+.navbar-item-hover-color {
+    background-color: #CEC6C6;
+}
