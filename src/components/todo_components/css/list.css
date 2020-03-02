@@ -1,0 +1,17 @@
+.set-center {
+      color: aliceblue;
+      text-align: center;
+      width:100%
+}
+.black-bg{
+    background-color: dimgrey;
+}
+.gray-bg{
+    background-color: darkgray;
+}
+.gray2-bg{
+    background-color: peachpuff;
+}
+.orage-bg{
+    background-color: sandybrown;
+}
