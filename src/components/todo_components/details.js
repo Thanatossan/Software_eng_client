@@ -1,6 +1,6 @@
 import React from "react";
 
-const detail = () => {
+const Detail = props => {
   return (
     <>
       <div>
@@ -17,4 +17,4 @@ const detail = () => {
   );
 };
 
-export default detail;
+export default Detail;
