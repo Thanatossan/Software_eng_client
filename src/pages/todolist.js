@@ -5,7 +5,6 @@ import Detail from "../components/todo_components/details";
 import "../components/todo_components/css/todolist.css";
 // import "../components/todo_components/css/divider.sass";
 const Todolist = () => {
-  const [selected, select] = useState(0);
   return (
     <>
       <div class="columns">
