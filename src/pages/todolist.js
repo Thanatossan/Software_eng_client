@@ -3,6 +3,7 @@ import Sidebar from "../components/todo_components/sidebar";
 import List from "../components/todo_components/list";
 import Detail from "../components/todo_components/details";
 import "../components/todo_components/css/todolist.css";
+// import "../components/todo_components/css/divider.sass";
 const todolist = () => {
   return (
     <>
@@ -13,8 +14,9 @@ const todolist = () => {
         <div class="column is-5">
           <List />
         </div>
-        {/* <div class="is-divider-vertical" data-content="OR"></div> */}
-        <div class="column ">
+        {/* <div class="is-divider-vertical"></div> */}
+
+        <div class="column" style={{ margin: "30px" }}>
           <Detail />
         </div>
       </div>

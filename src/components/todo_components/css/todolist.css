@@ -10,3 +10,15 @@ body {
 h1 {
     font-size: 75px;
 }
+
+.line-in-middle {
+    width: 400px;
+    height: 200px;
+    background: linear-gradient(to right,
+            transparent 0%,
+            transparent calc(50% - 0.81px),
+            black calc(50% - 0.8px),
+            black calc(50% + 0.8px),
+            transparent calc(50% + 0.81px),
+            transparent 100%);
+}

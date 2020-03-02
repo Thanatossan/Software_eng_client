@@ -20,7 +20,7 @@ const list = () => {
             {" "}
             Software Engineering Homework{" "}
           </button> */}
-          <div class="box">
+          <div class="box" style={{ width: "400px" }}>
             <p> Software Engineering Homework</p>
           </div>
         </div>
