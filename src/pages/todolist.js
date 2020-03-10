@@ -8,9 +8,7 @@ const Todolist = () => {
   return (
     <>
       <div class="columns">
-        <div class="column is-1">
-          <Sidebar />
-        </div>
+        <div class="column is-1"></div>
         <div class="column is-5">
           <List />
         </div>
