@@ -1,40 +1,43 @@
 import React, { useState } from "react";
 import "./css/list.css";
-const List = () => {
-  const [tasks, setTasks] = useState([
-    {
-      text: "Software Engineering Homework",
-      isCompleted: false
-    },
-    {
-      text: "Os report",
-      isCompleted: false
-    },
-    {
-      text: "Do laundry",
-      isCompleted: false
-    }
-  ]);
-  const addTask = text => setTasks([...tasks, { text }]);
+const List = props => {
+  // const [tasks, setTasks] = useState([
+  //   {
+  //     text: "Software Engineering Homework",
+  //     isCompleted: false
+  //   },
+  //   {
+  //     text: "Os report",
+  //     isCompleted: false
+  //   },
+  //   {
+  //     text: "Do laundry",
+  //     isCompleted: false
+  //   }
+  // ]);
+  // const addTask = text => setTasks([...tasks, { text }]);
 
-  const toggleTask = index => {
-    const newTask = [...tasks];
-    newTask[index].isCompleted = !newTask[index].isCompleted;
-    setTasks(newTask);
-  };
-  const removeTask = index => {
-    const newTask = [...tasks];
-    newTask.splice(index, 1);
-    setTasks(newTask);
-  };
+  // const toggleTask = index => {
+  //   const newTask = [...tasks];
+  //   newTask[index].isCompleted = !newTask[index].isCompleted;
+  //   setTasks(newTask);
+  // };
+  // const removeTask = index => {
+  //   const newTask = [...tasks];
+  //   newTask.splice(index, 1);
+  //   setTasks(newTask);
+  // };
   return (
     <>
       <h1> TO DO LIST</h1>
-      {tasks.map((task, index) => (
+      {props.tasks.map((task, index) => (
         // <Listtodo taskname={task.text} index={index} />
         <div class="columns">
           <div class="column is-1" style={{ marginTop: "10px" }}>
-            <button class="button is-rounded" onClick={() => toggleTask(index)}>
+            <button
+              class="button is-rounded"
+              onClick={() => props.toggleTask(index)}
+            >
               {" "}
             </button>
           </div>
@@ -49,11 +52,11 @@ const List = () => {
                         : "todo-text"
                     }
                   >
-                    <p> {task.text}</p>
+                    <p onClick={() => props.selectTask(index)}> {task.text}</p>
                   </div>
                 </div>
                 <div class="column">
-                  <button onClick={() => removeTask(index)}>
+                  <button onClick={() => props.removeTask(index)}>
                     <i class="fas fa-trash-alt"></i>
                   </button>
                 </div>
@@ -62,7 +65,7 @@ const List = () => {
           </div>
         </div>
       ))}
-      <AddTaskForm addTask={addTask} />
+      <AddTaskForm addTask={props.addTask} />
     </>
   );
 };
@@ -82,7 +85,7 @@ const AddTaskForm = ({ addTask }) => {
         <input
           class="input"
           type="text"
-          placeholder="Text input"
+          placeholder="Add Task"
           style={{ width: "400px" }}
           value={value}
           onChange={e => setValue(e.target.value)}

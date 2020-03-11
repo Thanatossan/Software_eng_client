@@ -11,11 +11,22 @@ const Detail = props => {
           <p> Software Engineering Homework</p>{" "}
         </div> */}
 
-          <input class="input" type="text" defaultValue={"sss"}></input>
+          <input
+            class="input"
+            type="text"
+            defaultValue={props.selected.text}
+          ></input>
           <h2> Description</h2>
-          <textarea class="textarea" defaultValue={"ssss"}></textarea>
+          <textarea
+            class="textarea"
+            defaultValue={props.selected.detail}
+          ></textarea>
           <h2> End Date </h2>
-          <input class="input" type="text"></input>
+          <input
+            class="input"
+            type="text"
+            defaultValue={props.selected.date}
+          ></input>
           <br></br>
           <br></br>
           <button class="button" style={{ marginRight: "10px" }}>
