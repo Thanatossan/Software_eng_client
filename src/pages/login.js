@@ -2,7 +2,7 @@ import React from 'react'
 const Login = () => {
     return (
         <>
-            <div class="columns is-centered has-text-centered" style={{ position: "absolute" }, { margin: "0" }, { transform: "translate(0%,70%)" }}>
+            <div class="columns is-centered has-text-centered" style={{ position: "absolute" }, { margin: "0" }, { transform: "translate(0%,50%)" }}>
                 <div class="column is-half">
                     <div class="card">
                         <div class="card-content">
