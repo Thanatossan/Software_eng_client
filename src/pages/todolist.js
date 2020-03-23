@@ -10,18 +10,7 @@ const Todolist = () => {
       text: "Software Engineering Homework",
       isCompleted: false,
       detail: "Test",
-      date: ""
-    },
-    {
-      text: "Os report",
-      isCompleted: false,
-      detail: "",
-      date: " "
-    },
-    {
-      text: "Do laundry",
-      isCompleted: false,
-      detail: "",
+      priority: 0,
       date: ""
     }
   ]);
@@ -29,9 +18,13 @@ const Todolist = () => {
     text: "",
     isCompleted: false,
     detail: "",
+    priority: 0,
     date: ""
   });
-  const addTask = text => setTasks([...tasks, { text }]);
+  const addTask = text => {
+    const newTask = { text: text, isCompleted: false, detail: "", date: "" };
+    setTasks([...tasks, newTask]);
+  };
 
   const toggleTask = index => {
     const newTask = [...tasks];
@@ -45,6 +38,7 @@ const Todolist = () => {
         text: "",
         isCompleted: false,
         detail: "",
+        priority: 0,
         date: ""
       });
     }
@@ -53,6 +47,7 @@ const Todolist = () => {
   };
   const selectTask = index => {
     const newTask = [...tasks];
+    // console.log(tasks);
     select(newTask[index]);
   };
   return (
