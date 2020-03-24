@@ -50,6 +50,7 @@ const Todolist = () => {
     // console.log(tasks);
     select(newTask[index]);
   };
+  
   return (
     <>
       <div class="columns">

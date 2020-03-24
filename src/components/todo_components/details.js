@@ -1,10 +1,19 @@
-import React from "react";
+import React, { useState } from "react";
 import "./css/detail.css";
 const Detail = props => {
+  const [text, settext] = useState("");
+  const [detail, setDetail] = useState("");
+  const [date, setDate] = useState("");
+  const handleSubmit = e => {
+    // e.preventDefault();
+    console.log(text);
+    console.log(detail);
+    console.log(date);
+  };
   return (
     <>
       <div>
-        <form>
+        <form onSubmit={handleSubmit}>
           <h2>Title</h2>
           {/* <div class="box" style={{ width: "400px" }}>
           {" "}
@@ -14,21 +23,24 @@ const Detail = props => {
           <input
             class="input"
             type="text"
+            onChange={e => settext(e.target.value)}
             defaultValue={props.selected.text}
           ></input>
           <h2> Description</h2>
           <textarea
             class="textarea"
+            onChange={e => setDetail(e.target.value)}
             defaultValue={props.selected.detail}
           ></textarea>
           <h2> End Date </h2>
           <input
             class="input"
             type="text"
+            onChange={e => setDate(e.target.value)}
             defaultValue={props.selected.date}
           ></input>
           <div class="columns">
-            <div class="column">
+            {/* <div class="column">
               <div class="rate" style={{ padding: "10px" }}>
                 <input type="radio" id="star5" name="rate" value="5" />
                 <label for="star5" title="text">
@@ -51,7 +63,7 @@ const Detail = props => {
                   1 star
                 </label>
               </div>
-            </div>
+            </div> */}
             <br></br>
             <br></br>
             <div
