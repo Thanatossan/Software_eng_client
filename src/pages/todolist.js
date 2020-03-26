@@ -19,7 +19,7 @@ const Todolist = () => {
       isComplete: "",
       description: "",
       priority_level: 0,
-      deadline: ""
+      deadline: new Date()
     }
   ]);
 
@@ -38,8 +38,15 @@ const Todolist = () => {
     isComplete: false,
     description: "",
     priority_level: 0,
-    deadline: ""
+    deadline: new Date()
+      .toISOString()
+      .slice(0, 19)
+      .replace("T", " ")
   });
+
+  // const editTask = (id) =>{
+
+  // }
   const addTask = title => {
     setReload(true);
     const newTask = {
@@ -47,7 +54,10 @@ const Todolist = () => {
       title: title,
       isComplete: false,
       description: "",
-      deadline: ""
+      deadline: new Date()
+        .toISOString()
+        .slice(0, 19)
+        .replace("T", " ")
     };
     var post_data = {
       title: title,
@@ -78,7 +88,10 @@ const Todolist = () => {
         isComplete: false,
         description: "",
         priority_level: 0,
-        deadline: ""
+        deadline: new Date()
+          .toISOString()
+          .slice(0, 19)
+          .replace("T", " ")
       });
     }
     // console.log(newTask[index].Todolist_id);
@@ -111,7 +124,7 @@ const Todolist = () => {
           {/* <div class="is-divider-vertical"></div> */}
 
           <div class="column" style={{ margin: "30px" }}>
-            <Detail selected={selected} tasks={tasks} />
+            <Detail selected={selected} tasks={tasks} reset={setReload} />
           </div>
         </div>
       </>

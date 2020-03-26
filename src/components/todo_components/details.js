@@ -1,16 +1,51 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import DatePicker from "react-datepicker";
 import "./css/detail.css";
 import "react-datepicker/dist/react-datepicker.css";
-
+var url = "http://13.76.181.113/api/todolist/updated/";
 const Detail = props => {
   const [title, setTitle] = useState("");
   const [detail, setDetail] = useState("");
-  const [date, setDate] = useState("");
   const [priority, setpriority] = useState(0);
   const [startDate, setStartDate] = useState(new Date());
+  const [editedTask, SetEditTask] = useState({
+    title: props.selected.title,
+    description: props.selected.description,
+    priority_level: props.selected.priority,
+    deadline: new Date()
+  });
+
   const handleSubmit = e => {
     e.preventDefault();
+    // SetEditTask({
+    //   // Todolist_id: props.selected.Todolist_id
+    //   title: title,
+    //   description: detail,
+    //   priority: priority,
+    //   deadline: startDate
+    //     .toISOString()
+    //     .slice(0, 19)
+    //     .replace("T", " ")
+    // });
+    SetEditTask({
+      title: "kkasdas",
+      description: "Fucking Test Testaginbreasdds",
+      priority: 4,
+      deadline: "2020-03-04 10:22:11"
+    });
+    console.log(editedTask);
+    fetch(url + props.selected.Todolist_id, {
+      method: "patch",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        title: "kkasdas",
+        description: "Fucking Test Testaginbreasdds",
+        priority: 4,
+        deadline: "2020-03-04 10:22:11"
+      })
+    });
   };
   const checkNull = value => {
     if (value === null) {
@@ -19,7 +54,6 @@ const Detail = props => {
       return value;
     }
   };
-  console.log(props.selected.Todolist_id);
   return (
     <>
       <div>
@@ -43,16 +77,11 @@ const Detail = props => {
             defaultValue={checkNull(props.selected.description)}
           ></textarea>
           <h2> End Date </h2>
-          {/* <input
-            class="input"
-            type="text"
-            onChange={e => setDate(e.target.value)}
-            defaultValue={checkNull(props.selected.deadline)}
-          ></input> */}
 
           <DatePicker
             showPopperArrow={false}
             selected={startDate}
+            defaultValue={checkNull(props.selected.Date)}
             onChange={date => setStartDate(date)}
           />
 
@@ -117,12 +146,15 @@ const Detail = props => {
               class="column"
               style={{ marginTop: "80px", marginLeft: "300px" }}
             >
-              <h2>{title}</h2>
-              <button class="button" style={{ marginRight: "10px" }}>
+              {" "}
+              <button
+                class="button"
+                type="submit"
+                style={{ marginRight: "10px" }}
+              >
                 {" "}
                 save
               </button>
-              <button class="button"> delete</button>
             </div>
           </div>
         </form>
