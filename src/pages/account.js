@@ -18,8 +18,13 @@ const Account = () => {
                         <p class="title has-text-grey is-size-4">engineering</p>
                         <button style={{ backgroundColor: "#ffc30b" }} class="button is-large has-text-white">EDIT</button>
                     </div>
+                    <div class="columns">
+                    <div class="column is-four-fifths"></div>
+                    <div class="column">
                     <div class="card-content">
-                        <button class="button is-large has-text-white is-danger">LOG OUT</button>
+                        <button class="button is-large has-text-white is-danger">LOGOUT</button>
+                    </div>
+                    </div>
                     </div>
                 </div>
             </div>
