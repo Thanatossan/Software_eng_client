@@ -5,10 +5,7 @@ const Detail = props => {
   const [detail, setDetail] = useState("");
   const [date, setDate] = useState("");
   const handleSubmit = e => {
-    // e.preventDefault();
-    console.log(text);
-    console.log(detail);
-    console.log(date);
+    e.preventDefault();
   };
   return (
     <>
@@ -40,7 +37,7 @@ const Detail = props => {
             defaultValue={props.selected.date}
           ></input>
           <div class="columns">
-            {/* <div class="column">
+            <div class="column">
               <div class="rate" style={{ padding: "10px" }}>
                 <input type="radio" id="star5" name="rate" value="5" />
                 <label for="star5" title="text">
@@ -63,7 +60,7 @@ const Detail = props => {
                   1 star
                 </label>
               </div>
-            </div> */}
+            </div>
             <br></br>
             <br></br>
             <div

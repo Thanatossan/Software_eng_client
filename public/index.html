@@ -1,48 +1,281 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Fullcalendar 4</title>
+    <link rel="stylesheet" href="fullcalendar-4.4.0/core/main.css" />
+    <link rel="stylesheet" href="fullcalendar-4.4.0/daygrid/main.css" />
+    <link rel="stylesheet" href="fullcalendar-4.4.0/timegrid/main.css" />
+    <link rel="stylesheet" href="fullcalendar-4.4.0/list//main.css" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <script src="https://unpkg.com/@fullcalendar/interaction@4.4.0/main.min.js"></script>
 
-<head>
-  <meta charset="utf-8" />
-  <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="theme-color" content="#000000" />
-  <meta name="description" content="Web site created using create-react-app" />
-  <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
-  <!--
-      manifest.json provides metadata used when your web app is installed on a
-      user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
-    -->
-  <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.6.2/css/bulma.min.css" />
-  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css" />
-  <link href="https://fonts.googleapis.com/css?family=Gothic+A1&display=swap" rel="stylesheet">
-  <script src="https://kit.fontawesome.com/5065591d56.js" crossorigin="anonymous"></script>
-  <!-- <link href="https://fonts.googleapis.com/css?family=Quicksand:300,700" rel="stylesheet"> -->
-  <!--
-      Notice the use of %PUBLIC_URL% in the tags above.
-      It will be replaced with the URL of the `public` folder during the build.
-      Only files inside the `public` folder can be referenced from the HTML.
+    <script src="https://unpkg.com/@fullcalendar/daygrid@4.4.0/main.min.js"></script>
 
-      Unlike "/favicon.ico" or "favicon.ico", "%PUBLIC_URL%/favicon.ico" will
-      work correctly both with client-side routing and a non-root public URL.
-      Learn how to configure a non-root public URL by running `npm run build`.
-    -->
-  <title>React App</title>
-</head>
+    <script src="https://unpkg.com/@fullcalendar/timegrid@4.4.0/main.min.js"></script>
+    <style>
+/* NAV BAR หัวเรื่อง */
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  
+  overflow: hidden;
+  background-color:#FFEAEA;
+  
+}
 
-<body>
-  <noscript>You need to enable JavaScript to run this app.</noscript>
-  <div id="root"></div>
-  <!--
-      This HTML file is a template.
-      If you open it directly in the browser, you will see an empty page.
+li {
+  float: left;
 
-      You can add webfonts, meta tags, or analytics to this file.
-      The build step will place the bundled scripts into the <body> tag.
+}
 
-      To begin the development, run `npm start` or `yarn start`.
-      To create a production bundle, use `npm run build` or `yarn build`.
-    -->
-</body>
+li a {
+  display:inline-block;
+  color: gray;
 
+  text-align: center;
+  padding: 14px 16px;
+  font-size: 30px;
+  
+  text-decoration:gray;
+}
+
+li a:hover {
+  background-color: #000;
+}
+
+
+    * {
+      box-sizing:border-box;
+    }
+    body{
+    font-family: Arial, Helvetica, sans-serif;
+    }
+
+    /* style the header */
+    header{
+      background-color: white(235, 154, 204);
+      padding: 0px;
+      text-align: center;
+      font-size: 70px;
+      color:gray;
+      font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin-left: 0em;
+    }
+    /* create two columns/boxes that floats next to each other */
+    nav { 
+      float: left;
+      width: 30%;
+      height: 300px;
+      background: #cccccc;
+      padding: 20px;
+      
+    }
+/* style the list inside the menu */
+    nav1 ul{
+      list-style-type: none;
+      padding: 0;
+    }
+    araticle {
+      float:left;
+       padding: 20px;
+  width: 70%;
+  background-color: #f1f1f1;
+  height: 300px; /* only for demonstration, should be removed */
+}
+
+/* Clear floats after the columns */
+section:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* Style the footer */
+footer {
+  background-color: rgb(255, 104, 180);
+  padding: 10px;
+  text-align: center;
+  color: white;
+}
+
+/* Responsive layout - makes the two columns/boxes stack on top of each other instead of next to each other, on small screens */
+@media (max-width: 600px) {
+  nav, article {
+    width: 100%;
+    height: auto;
+  }
+}
+    
+    </style>
+    <script>
+      document.addEventListener("DOMContentLoaded", function() {
+        var Calendar = FullCalendar.Calendar;
+        var Draggable = FullCalendarInteraction.Draggable;
+        
+        var containerEl = document.getElementById("external-events");
+        var calendarEl = document.getElementById("calendar");
+        var checkbox = document.getElementById("drop-remove");
+        
+
+        // initialize the external events
+        // -----------------------------------------------------------------
+
+        new Draggable(containerEl, {
+          itemSelector: ".fc-event",
+          eventData: function(eventEl) {
+            return {
+              title: eventEl.innerText
+            };
+          }
+        });
+
+        // initialize the calendar
+        // -----------------------------------------------------------------
+
+        var calendar = new Calendar(calendarEl, {
+          plugins: ["interaction", "dayGrid", "timeGrid"],
+          header: {
+            left: "prev,next today",
+            center: "title",
+            right: "dayGridMonth,timeGridWeek,timeGridDay"
+          },
+          editable: true,
+          droppable: true, // this allows things to be dropped onto the calendar
+          drop: function(info) {
+            // is the "remove after drop" checkbox checked?
+            if (checkbox.checked) {
+              // if so, remove the element from the "Draggable Events" list
+              info.draggedEl.parentNode.removeChild(info.draggedEl);
+            }
+          }
+        });
+      });
+    </script>
+
+    <style type="text/css">
+      html,
+      body {
+        background-color: white(247, 99, 111, 0.973);
+        margin: 0;
+        padding: 0;
+        font-family: tahoma, "Microsoft Sans  Serif", sans-serif, Verdana;
+        font-size: 12px;
+      }
+      h1 {
+        font-size: 80px;
+        margin: 0 auto;
+        padding: 0;
+        text-align: left;
+      }
+      #calendar {
+        max-width: 100%;
+        margin: 0 auto;
+        font-size: 20px;
+
+        background-color: white;
+      }
+
+      #external-events {
+        position:fixed  ;
+        
+        z-index: 2;
+        top: 180px;
+        left: 20px;
+        width: 150px;
+        padding: 0 10px;
+        border: 1px solid #ccc;
+        background: pink;
+      }
+
+      .demo-topbar + #external-events {
+        /* will get stripped out */
+        top: 60px;
+      }
+
+      #external-events .fc-event {
+        margin: 1em 0;
+        cursor: move;
+      }
+
+    </style>
+  </head>
+
+  <body>
+      <ul>
+          <li class="nav-item active">
+              <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">To do List</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Calendar</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Grade Calculate</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Subject Diagram</a>
+            </li>
+            <li class="nav-item">
+                    <a class="nav-link" href="#">Objective</a>
+                </li>
+                <li class="nav-item">
+                        <a class="nav-link" href="#">My Accounts</a>
+                    </li>
+        </ul>
+    
+          </div>
+        </nav1>
+      <header>
+          <h1>CALENDAR</h1>
+        </header>
+        <div style="margin:auto;width:100%;">
+          <div id="calendar"></div>
+        </div>
+     
+      
+    
+    <br /><br />
+    <div style="margin:auto;width:800px;">
+      <div id="calendar"></div>
+    </div>
+
+    
+
+
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script
+      type="text/javascript"
+      src="fullcalendar-4.4.0/core/main.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="fullcalendar-4.4.0/core/locales/th.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="fullcalendar-4.4.0/daygrid/main.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="fullcalendar-4.4.0/timegrid/main.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="fullcalendar-4.4.0/interaction/main.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="fullcalendar-4.4.0/list/main.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="fullcalendar-4.4.0/core/locales/th.js"
+    ></script>
+    <script type="text/javascript" src="script-4.4.0.js"></script>
+    <div id="root"></div>
+  </body>
 </html>
