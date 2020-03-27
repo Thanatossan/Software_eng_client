@@ -1,32 +1,6 @@
 import React, { useState } from "react";
 import "./css/list.css";
 const List = props => {
-  // const [tasks, setTasks] = useState([
-  //   {
-  //     text: "Software Engineering Homework",
-  //     isCompleted: false
-  //   },
-  //   {
-  //     text: "Os report",
-  //     isCompleted: false
-  //   },
-  //   {
-  //     text: "Do laundry",
-  //     isCompleted: false
-  //   }
-  // ]);
-  // const addTask = text => setTasks([...tasks, { text }]);
-
-  // const toggleTask = index => {
-  //   const newTask = [...tasks];
-  //   newTask[index].isCompleted = !newTask[index].isCompleted;
-  //   setTasks(newTask);
-  // };
-  // const removeTask = index => {
-  //   const newTask = [...tasks];
-  //   newTask.splice(index, 1);
-  //   setTasks(newTask);
-  // };
   return (
     <>
       <h1> TO DO LIST</h1>
@@ -47,12 +21,17 @@ const List = props => {
                 <div class="column is-12">
                   <div
                     class={
-                      task.isCompleted
-                        ? "todo-text todo-completed"
-                        : "todo-text"
+                      task.isComplete ? "todo-text todo-completed" : "todo-text"
                     }
                   >
-                    <p onClick={() => props.selectTask(index)}> {task.text}</p>
+                    <p
+                      onClick={() => {
+                        props.selectTask(index);
+                      }}
+                    >
+                      {" "}
+                      {task.title}
+                    </p>
                   </div>
                 </div>
                 <div class="column">
