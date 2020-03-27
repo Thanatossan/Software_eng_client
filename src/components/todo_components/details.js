@@ -17,35 +17,28 @@ const Detail = props => {
 
   const handleSubmit = e => {
     e.preventDefault();
-    // SetEditTask({
-    //   // Todolist_id: props.selected.Todolist_id
-    //   title: title,
-    //   description: detail,
-    //   priority: priority,
-    //   deadline: startDate
-    //     .toISOString()
-    //     .slice(0, 19)
-    //     .replace("T", " ")
-    // });
     SetEditTask({
-      title: "kkasdas",
-      description: "Fucking Test Testaginbreasdds",
+      // Todolist_id: props.selected.Todolist_id
+      // title: title,
+      // description: detail,
+      // priority: priority,
+      title: "test",
+      description: "detail",
       priority: 4,
-      deadline: "2020-03-04 10:22:11"
+      deadline: startDate
+        .toISOString()
+        .slice(0, 19)
+        .replace("T", " ")
     });
-    console.log(editedTask);
+
     fetch(url + props.selected.Todolist_id, {
-      method: "patch",
+      method: "post",
       headers: {
         "Content-Type": "application/json"
       },
-      body: JSON.stringify({
-        title: "kkasdas",
-        description: "Fucking Test Testaginbreasdds",
-        priority: 4,
-        deadline: "2020-03-04 10:22:11"
-      })
+      body: JSON.stringify(editedTask)
     });
+    console.log(editedTask);
   };
   const checkNull = value => {
     if (value === null) {
