@@ -12,6 +12,7 @@ var studentid = "/600610780";
 
 const Todolist = () => {
   const [isReload, setReload] = useState(false);
+  const [awareSelect, setAware] = useState(false);
   const [tasks, setTasks] = useState([
     {
       Todolist_id: "",
@@ -105,6 +106,7 @@ const Todolist = () => {
   const selectTask = index => {
     const newTask = [...tasks];
     select(newTask[index]);
+    setAware(!awareSelect);
   };
   if (isReload) return <DisappearedLoading />;
   else
@@ -124,7 +126,12 @@ const Todolist = () => {
           {/* <div class="is-divider-vertical"></div> */}
 
           <div class="column" style={{ margin: "30px" }}>
-            <Detail selected={selected} tasks={tasks} reset={setReload} />
+            <Detail
+              selected={selected}
+              tasks={tasks}
+              reset={setReload}
+              awareSelect={awareSelect}
+            />
           </div>
         </div>
       </>
