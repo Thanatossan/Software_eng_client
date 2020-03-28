@@ -62,12 +62,14 @@ const Detail = props => {
             type="text"
             onChange={e => setTitle(e.target.value)}
             defaultValue={checkNull(props.selected.title)}
+            style={{borderRadius: "25px"}}
           ></input>
           <h2> Description</h2>
           <textarea
             class="textarea"
             onChange={e => setDetail(e.target.value)}
             defaultValue={checkNull(props.selected.description)}
+            style={{borderRadius: "25px"}}
           ></textarea>
           <h2> End Date </h2>
 

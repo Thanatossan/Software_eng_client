@@ -16,7 +16,7 @@ const List = props => {
             </button>
           </div>
           <div class="column">
-            <div class="box" style={{ width: "400px" }}>
+            <div class="box" style={{ width: "400px" },{borderRadius: "25px"}}>
               <div class="columns">
                 <div class="column is-12">
                   <div
@@ -60,12 +60,13 @@ const AddTaskForm = ({ addTask }) => {
   };
   return (
     <>
+    {/* add tark */}
       <form onSubmit={handleSubmit}>
         <input
-          class="input"
+          class="input is-large"
           type="text"
           placeholder="Add Task"
-          style={{ width: "400px" }}
+          style={{ width: "400px" },{borderRadius: "25px"}}
           value={value}
           onChange={e => setValue(e.target.value)}
         ></input>
@@ -73,6 +74,7 @@ const AddTaskForm = ({ addTask }) => {
           {" "}
           add
         </button>
+        
       </form>
     </>
   );
