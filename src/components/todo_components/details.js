@@ -4,6 +4,7 @@ import "./css/detail.css";
 import "react-datepicker/dist/react-datepicker.css";
 var url = "http://13.76.181.113/api/todolist/updated/";
 const Detail = props => {
+  const [check, hascheck] = useState(false);
   const [id, setId] = useState(0);
   const [title, setTitle] = useState("");
   const [detail, setDetail] = useState("");
@@ -15,6 +16,7 @@ const Detail = props => {
     priority_level: "",
     deadline: new Date()
   });
+
   useEffect(() => {
     setId(props.selected.Todolist_id);
     SetEditTask({
@@ -31,13 +33,16 @@ const Detail = props => {
     priority,
     props.awareSelect,
     props.selected.Todolist_id,
+    props.selected.detail,
     props.selected.id,
+    props.selected.title,
     startDate,
     title
   ]);
-  console.log(detail);
+
   const handleSubmit = e => {
     e.preventDefault();
+    props.editTask();
     SetEditTask({
       title: title,
       description: detail,
@@ -47,7 +52,7 @@ const Detail = props => {
         .slice(0, 19)
         .replace("T", " ")
     });
-    console.log(detail);
+
     fetch(url + id, {
       method: "post",
       headers: {
@@ -55,6 +60,7 @@ const Detail = props => {
       },
       body: JSON.stringify(editedTask)
     });
+    alert("updated");
   };
   const checkNull = value => {
     if (value === null) {
@@ -62,6 +68,11 @@ const Detail = props => {
     } else {
       return value;
     }
+  };
+  const defaultTime = k => {
+    var d =
+      k.substring(0, 4) + "/" + k.substring(5, 7) + "/" + k.substring(8, 10);
+    return d;
   };
   return (
     <>
@@ -76,7 +87,9 @@ const Detail = props => {
           <input
             class="input"
             type="text"
+            // value={props.selected.title}
             onChange={e => setTitle(e.target.value)}
+            // onChange={updateInputValue}
             defaultValue={checkNull(props.selected.title)}
           ></input>
           <h2> Description</h2>
@@ -87,14 +100,24 @@ const Detail = props => {
             defaultValue={checkNull(props.selected.description)}
           ></textarea>
           <h2> End Date </h2>
-
-          <DatePicker
-            showPopperArrow={false}
-            selected={startDate}
-            defaultValue={checkNull(props.selected.Date)}
-            onChange={date => setStartDate(date)}
-          />
-
+          <div class="columns">
+            <div class="column">
+              <p> Current </p>
+              <h5> Select</h5>
+            </div>
+            <div class="column">
+              <p>{defaultTime(props.selected.deadline)} </p>
+              <DatePicker
+                dateFormat="yyyy/MM/dd"
+                showPopperArrow={false}
+                selected={startDate}
+                onChange={date => {
+                  setStartDate(date);
+                  hascheck(true);
+                }}
+              />
+            </div>
+          </div>
           <div class="columns">
             <div class="column">
               <div class="rate" style={{ padding: "10px" }}>

@@ -45,9 +45,9 @@ const Todolist = () => {
       .replace("T", " ")
   });
 
-  // const editTask = (id) =>{
-
-  // }
+  const editTask = () => {
+    setReload(true);
+  };
   const addTask = title => {
     setReload(true);
     const newTask = {
@@ -131,6 +131,7 @@ const Todolist = () => {
               tasks={tasks}
               reset={setReload}
               awareSelect={awareSelect}
+              editTask={editTask}
             />
           </div>
         </div>
