@@ -39,9 +39,27 @@ const Detail = props => {
     startDate,
     title
   ]);
-
+  const EditTaskForm = ({ editTask }) => {
+    const [editedTask, SetEditTask] = useState({
+      title: "",
+      description: "",
+      priority_level: "",
+      deadline: new Date()
+    });
+    const handleSubmit2 = e => {
+      editedTask && editTask(editedTask);
+      SetEditTask({
+        title: "",
+        description: "",
+        priority_level: "",
+        deadline: new Date()
+      });
+    };
+  };
   const handleSubmit = e => {
     e.preventDefault();
+    const data = new FormData(e.target);
+    console.log(data);
     props.editTask();
     SetEditTask({
       title: title,
@@ -87,16 +105,18 @@ const Detail = props => {
           <input
             class="input"
             type="text"
-            // value={props.selected.title}
-            onChange={e => setTitle(e.target.value)}
+            // value={editedTask.title}
+            // onChange={e => setTitle(e.target.value)}
             // onChange={updateInputValue}
+            id="title"
             defaultValue={checkNull(props.selected.title)}
           ></input>
           <h2> Description</h2>
           <textarea
             class="textarea"
             type="text"
-            onChange={e => setDetail(e.target.value)}
+            id="description"
+            // onChange={e => setDetail(e.target.value)}
             defaultValue={checkNull(props.selected.description)}
           ></textarea>
           <h2> End Date </h2>

@@ -13,6 +13,7 @@ var studentid = "/600610780";
 const Todolist = () => {
   const [isReload, setReload] = useState(false);
   const [awareSelect, setAware] = useState(false);
+  const [isSelect, setSelect] = useState(false);
   const [tasks, setTasks] = useState([
     {
       Todolist_id: "",
@@ -47,6 +48,7 @@ const Todolist = () => {
 
   const editTask = () => {
     setReload(true);
+    const newTask = [...tasks];
   };
   const addTask = title => {
     setReload(true);
@@ -105,6 +107,7 @@ const Todolist = () => {
   };
   const selectTask = index => {
     const newTask = [...tasks];
+    setSelect(true);
     select(newTask[index]);
     setAware(!awareSelect);
   };
