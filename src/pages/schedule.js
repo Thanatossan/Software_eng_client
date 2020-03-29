@@ -1,11 +1,10 @@
 import React from "react";
-import Todolist from "../components/main_components/todolist";
-const Home = () => {
+const schedule = () => {
   return (
     <React.Fragment>
       <div class="container columns">
         <div class="column">
-          <Todolist />
+          <h2>schedule</h2>
         </div>
         <div class="column"></div>
       </div>
@@ -13,4 +12,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default schedule;

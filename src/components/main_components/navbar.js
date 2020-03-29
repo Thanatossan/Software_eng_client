@@ -12,18 +12,18 @@ const navbar = () => {
           <Link to="/todolist" class="navbar-item leftborder">
             TO DO LIST
           </Link>
-          <a href="/" class="navbar-item leftborder">
+          <Link to="/calendar" class="navbar-item leftborder">
             CALENDAR
-          </a>
-          <a href="/" class="navbar-item leftborder">
+          </Link>
+          <Link to="/gradecal" class="navbar-item leftborder">
             GRADE CALCULATE
-          </a>
-          <a href="/" class="navbar-item leftborder">
+          </Link>
+          <Link to="/" class="navbar-item leftborder">
             OBJECTIVE
-          </a>
-          <a href="/" class="navbar-item leftborder">
+          </Link>
+          <Link to="/" class="navbar-item leftborder">
             ACCOUNT
-          </a>
+          </Link>
         </div>
       </nav>
     </>
