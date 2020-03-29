@@ -18,6 +18,9 @@ const navbar = () => {
           <Link to="/gradecal" class="navbar-item leftborder">
             GRADE CALCULATE
           </Link>
+          <Link to="/schedule" class="navbar-item leftborder">
+            SUBJECT SCHEDULE
+          </Link>
           <Link to="/" class="navbar-item leftborder">
             OBJECTIVE
           </Link>
