@@ -3,7 +3,7 @@ const Account = () => {
     return (
         <div class="columns" style={{ padding: 30 }}>
             <div class="column is-two-thirds" style={{ paddingLeft: 30 }}>
-                <p class="title is-size-1">ACCOUNT</p>
+                <h1>ACCOUNT</h1>
                 <div class="card" style={{ borderRadius: "25px" }}>
                     <div class="card-content">
                         <p class="title">CMU Account</p>
