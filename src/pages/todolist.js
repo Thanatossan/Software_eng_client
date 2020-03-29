@@ -1,104 +1,53 @@
-import React, { useState, useEffect } from "react";
-import { DisappearedLoading } from "react-loadingg";
-// import Sidebar from "../components/todo_components/sidebar";
+import React, { Fragment, Component, useState } from "react";
+import Sidebar from "../components/todo_components/sidebar";
 import List from "../components/todo_components/list";
 import Detail from "../components/todo_components/details";
 import "../components/todo_components/css/todolist.css";
 // import "../components/todo_components/css/divider.sass";
-var url_show = "http://13.76.181.113/api/todolist/showtitle";
-var url_delete = "http://13.76.181.113/api/todolist/deleted";
-var url_added = "http://13.76.181.113/api/todolist/added";
-var studentid = "/600610780";
-
 const Todolist = () => {
-  const [isReload, setReload] = useState(false);
   const [tasks, setTasks] = useState([
     {
-      Todolist_id: "",
-      title: "",
-      isComplete: "",
-      description: "",
-      priority_level: 0,
-      deadline: new Date()
+      text: "Software Engineering Homework",
+      isCompleted: false,
+      detail: "Test",
+      date: ""
+    },
+    {
+      text: "Os report",
+      isCompleted: false,
+      detail: "",
+      date: " "
+    },
+    {
+      text: "Do laundry",
+      isCompleted: false,
+      detail: "",
+      date: ""
     }
   ]);
-
-  useEffect(() => {
-    fetch(url_show + studentid)
-      .then(Response => Response.json())
-      .then(jsonData => {
-        setTasks(jsonData);
-        setReload(false);
-      });
-  }, [isReload]);
-
   const [selected, select] = useState({
-    Todolist_id: "",
-    title: "",
-    isComplete: false,
-    description: "",
-    priority_level: 0,
-    deadline: new Date()
-      .toISOString()
-      .slice(0, 19)
-      .replace("T", " ")
+    text: "",
+    isCompleted: false,
+    detail: "",
+    date: ""
   });
-
-  // const editTask = (id) =>{
-
-  // }
-  const addTask = title => {
-    setReload(true);
-    const newTask = {
-      Todolist_id: "",
-      title: title,
-      isComplete: false,
-      description: "",
-      deadline: new Date()
-        .toISOString()
-        .slice(0, 19)
-        .replace("T", " ")
-    };
-    var post_data = {
-      title: title,
-      isComplete: 0
-    };
-    fetch(url_added + studentid, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify(post_data)
-    });
-
-    setTasks([...tasks, newTask]);
-  };
+  const addTask = text => setTasks([...tasks, { text }]);
 
   const toggleTask = index => {
     const newTask = [...tasks];
-    newTask[index].isComplete = !newTask[index].isComplete;
+    newTask[index].isCompleted = !newTask[index].isCompleted;
     setTasks(newTask);
   };
   const removeTask = index => {
     const newTask = [...tasks];
     if (selected === newTask[index]) {
       select({
-        Todolist_id: "",
-        title: "",
-        isComplete: false,
-        description: "",
-        priority_level: 0,
-        deadline: new Date()
-          .toISOString()
-          .slice(0, 19)
-          .replace("T", " ")
+        text: "",
+        isCompleted: false,
+        detail: "",
+        date: ""
       });
     }
-    // console.log(newTask[index].Todolist_id);
-    setReload(true);
-    fetch(url_delete + "/" + newTask[index].Todolist_id, {
-      method: "delete"
-    });
     newTask.splice(index, 1);
     setTasks(newTask);
   };
@@ -106,29 +55,27 @@ const Todolist = () => {
     const newTask = [...tasks];
     select(newTask[index]);
   };
-  if (isReload) return <DisappearedLoading />;
-  else
-    return (
-      <>
-        <div class="columns">
-          <div class="column is-1"></div>
-          <div class="column is-5">
-            <List
-              addTask={addTask}
-              toggleTask={toggleTask}
-              removeTask={removeTask}
-              tasks={tasks}
-              selectTask={selectTask}
-            />
-          </div>
-          {/* <div class="is-divider-vertical"></div> */}
-
-          <div class="column" style={{ margin: "30px" }}>
-            <Detail selected={selected} tasks={tasks} reset={setReload} />
-          </div>
+  return (
+    <>
+      <div class="columns">
+        <div class="column is-1"></div>
+        <div class="column is-5">
+          <List
+            addTask={addTask}
+            toggleTask={toggleTask}
+            removeTask={removeTask}
+            tasks={tasks}
+            selectTask={selectTask}
+          />
         </div>
-      </>
-    );
+        {/* <div class="is-divider-vertical"></div> */}
+
+        <div class="column" style={{ margin: "30px" }}>
+          <Detail selected={selected} tasks={tasks} />
+        </div>
+      </div>
+    </>
+  );
 };
 
 export default Todolist;
