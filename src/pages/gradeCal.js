@@ -7,20 +7,16 @@ const Gradecal = () => {
       courseID: ""
     }
   ]);
+  const [courseDetail, setCourseDetail] = useState([
+    {
+      courseName: "",
+      credit: ""
+    }
+  ]);
 
-  const [courseName, setCourseName] = useState("");
-  const [Credit, setCredit] = useState("");
-  const searchcoure = code => {
-    fetch(urlAPI + code)
-      .then(Response => Response.json())
-      .then(jsonData => {
-        setCourseName(jsonData.courseName);
-        setCredit(jsonData.courseCredit);
-      });
-  };
   const handleSubmit = e => {
     e.preventDefault();
-    searchcoure(inputFields);
+    // searchcoure(inputFields);
   };
   const handleInputChange = (index, event) => {
     const values = [...inputFields];
@@ -28,17 +24,35 @@ const Gradecal = () => {
       values[index].courseID = event.target.value;
     }
     setInputFields(values);
+    console.log(inputFields);
   };
   const handleAddFields = () => {
     const values = [...inputFields];
+    const values2 = [...courseDetail];
     values.push({ courseID: "" });
+    values2.push({ courseName: "", credit: "" });
     setInputFields(values);
+    setCourseDetail(values2);
   };
 
   const handleRemoveFields = index => {
     const values = [...inputFields];
     values.splice(index, 1);
     setInputFields(values);
+  };
+  const searchcoure = index => {
+    console.log(inputFields[index].courseID);
+    var code = inputFields[index].courseID;
+    const values = [...courseDetail];
+    fetch(urlAPI + code)
+      .then(Response => Response.json())
+      .then(jsonData => {
+        values[index].courseName = jsonData.courseName;
+        values[index].credit = jsonData.courseCredit;
+        setCourseDetail(values);
+        console.log(jsonData);
+        console.log(courseDetail);
+      });
   };
   return (
     <>
@@ -78,16 +92,16 @@ const Gradecal = () => {
                     value={inputFields.courseID}
                     onChange={e => handleInputChange(index, e)}
                   ></input>
-                  <button type="submit" onSubmit={handleSubmit}>
+                  <button onClick={e => searchcoure(index)}>
                     {" "}
-                    Searchcoure
+                    Searchcourse
                   </button>
                 </div>
                 <div class="column is-one-third">
-                  <p>{courseName}</p>
+                  <p>{courseDetail[index].courseName}</p>
                 </div>
                 <div class="column">
-                  <p id="credit">{Credit}</p>
+                  <p id="credit">{courseDetail[index].credit}</p>
                 </div>
                 <div class="column is-one-third">
                   <label for="expectGrade"> Grade: </label>
