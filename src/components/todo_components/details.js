@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import DatePicker from "react-datepicker";
+import Rating from "@material-ui/lab/Rating";
 import "./css/detail.css";
 import "react-datepicker/dist/react-datepicker.css";
 var url = "http://13.76.181.113/api/todolist/updated/";
@@ -30,18 +31,21 @@ const Detail = props => {
     });
   }, [
     detail,
+    id,
     priority,
     props.awareSelect,
     props.selected.Todolist_id,
     props.selected.detail,
     props.selected.id,
     props.selected.title,
+    props.selected.priority_level,
     startDate,
     title
   ]);
-
   const handleSubmit = e => {
     e.preventDefault();
+    // const data = new FormData(e.target);
+    // console.log(data);
     props.editTask();
     SetEditTask({
       title: title,
@@ -52,7 +56,6 @@ const Detail = props => {
         .slice(0, 19)
         .replace("T", " ")
     });
-
     fetch(url + id, {
       method: "post",
       headers: {
@@ -74,6 +77,7 @@ const Detail = props => {
       k.substring(0, 4) + "/" + k.substring(5, 7) + "/" + k.substring(8, 10);
     return d;
   };
+
   return (
     <>
       <div>
@@ -85,25 +89,30 @@ const Detail = props => {
         </div> */}
 
           <input
-            class="input"
+            class="input is-rounded is-large"
             type="text"
-            // value={props.selected.title}
+            // value={editedTask.title}
             onChange={e => setTitle(e.target.value)}
             // onChange={updateInputValue}
+            id="title"
             defaultValue={checkNull(props.selected.title)}
+            style={({ borderRadius: "25px" }, { background: "#FFEAEA" })}
           ></input>
           <h2> Description</h2>
           <textarea
-            class="textarea"
+            class="textarea is-large is-rounded"
+            rows="5"
             type="text"
+            id="description"
             onChange={e => setDetail(e.target.value)}
             defaultValue={checkNull(props.selected.description)}
+            style={{ background: "#FFEAEA" }}
           ></textarea>
           <h2> End Date </h2>
           <div class="columns">
             <div class="column">
               <p> Current </p>
-              <h5> Select</h5>
+              <h5> Select new date</h5>
             </div>
             <div class="column">
               <p>{defaultTime(props.selected.deadline)} </p>
@@ -120,75 +129,49 @@ const Detail = props => {
           </div>
           <div class="columns">
             <div class="column">
-              <div class="rate" style={{ padding: "10px" }}>
-                <input
-                  type="radio"
-                  id="star5"
-                  name="rate"
-                  value="5"
-                  onClick={() => setpriority(5)}
+              {" "}
+              <p> priority</p>
+              <h5> Edit priority</h5>
+            </div>
+            <div class="column">
+              <Rating
+                name="read-only"
+                value={props.selected.priority_level}
+                onChange={(event, newValue) => {
+                  setpriority(newValue);
+                }}
+                readOnly
+              />
+              <br></br>
+              <div style={{ marginTop: "20px" }}>
+                <Rating
+                  name="simple-controlled"
+                  value={priority}
+                  onChange={(event, newValue) => {
+                    setpriority(newValue);
+                  }}
                 />
-                <label for="star5" title="text">
-                  5 stars
-                </label>
-                <input
-                  type="radio"
-                  id="star4"
-                  name="rate"
-                  value="4"
-                  onClick={() => setpriority(4)}
-                />
-                <label for="star4" title="text">
-                  4 stars
-                </label>
-                <input
-                  type="radio"
-                  id="star3"
-                  name="rate"
-                  value="3"
-                  onClick={() => setpriority(3)}
-                />
-                <label for="star3" title="text">
-                  3 stars
-                </label>
-                <input
-                  type="radio"
-                  id="star2"
-                  name="rate"
-                  value="2"
-                  onClick={() => setpriority(2)}
-                />
-                <label for="star2" title="text">
-                  2 stars
-                </label>
-                <input
-                  type="radio"
-                  id="star1"
-                  name="rate"
-                  value="1"
-                  onClick={() => setpriority(1)}
-                />
-                <label for="star1" title="text">
-                  1 star
-                </label>
               </div>
             </div>
+
             <br></br>
+
             <br></br>
-            <div
-              class="column"
-              style={{ marginTop: "80px", marginLeft: "300px" }}
+          </div>
+          <div class="has-text-right">
+            {" "}
+            <button
+              class="button has-text-white is-rounded is-large"
+              style={
+                ({ marginRight: "10px" },
+                { color: "white" },
+                { backgroundColor: "#ffc30b" })
+              }
+              type="submit"
             >
               {" "}
-              <button
-                class="button"
-                type="submit"
-                style={{ marginRight: "10px" }}
-              >
-                {" "}
-                save
-              </button>
-            </div>
+              save
+            </button>
           </div>
         </form>
       </div>
