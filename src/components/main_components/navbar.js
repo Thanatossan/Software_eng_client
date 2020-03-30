@@ -15,7 +15,7 @@ const navbar = () => {
           <a href="/" class="navbar-item leftborder">
             CALENDAR
           </a>
-          <a href="/" class="navbar-item leftborder">
+          <a href="/gradecal" class="navbar-item leftborder">
             GRADE CALCULATE
           </a>
           <a href="/" class="navbar-item leftborder">
