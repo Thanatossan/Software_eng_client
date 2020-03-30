@@ -25,15 +25,6 @@ const Todolist = () => {
     }
   ]);
 
-  useEffect(() => {
-    fetch(url_show + studentid)
-      .then(Response => Response.json())
-      .then(jsonData => {
-        setTasks(jsonData);
-        setReload(false);
-      });
-  }, [isReload]);
-
   const [selected, select] = useState({
     Todolist_id: "",
     title: "",
@@ -46,9 +37,29 @@ const Todolist = () => {
       .replace("T", " ")
   });
 
+  useEffect(() => {
+    fetch(url_show + studentid)
+      .then(Response => Response.json())
+      .then(jsonData => {
+        setTasks(jsonData);
+        select({
+          Todolist_id: "",
+          title: "",
+          isComplete: false,
+          description: "",
+          priority_level: 0,
+          deadline: new Date()
+            .toISOString()
+            .slice(0, 19)
+            .replace("T", " ")
+        });
+        setReload(false);
+      });
+  }, [isReload]);
+
   const editTask = () => {
     setReload(true);
-    const newTask = [...tasks];
+    // const newTask = [...tasks];
   };
   const addTask = title => {
     setReload(true);
@@ -86,7 +97,7 @@ const Todolist = () => {
     const newTask = [...tasks];
     if (selected === newTask[index]) {
       select({
-        Todolist_id: "",
+        Todolist_id: 0,
         title: "",
         isComplete: false,
         description: "",
@@ -110,6 +121,7 @@ const Todolist = () => {
     setSelect(true);
     select(newTask[index]);
     setAware(!awareSelect);
+    console.log(selected);
   };
   if (isReload) return <DisappearedLoading />;
   else
@@ -135,6 +147,7 @@ const Todolist = () => {
               reset={setReload}
               awareSelect={awareSelect}
               editTask={editTask}
+              isSelect={isSelect}
             />
           </div>
         </div>
