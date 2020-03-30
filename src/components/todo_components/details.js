@@ -23,7 +23,7 @@ const Detail = props => {
     SetEditTask({
       title: title,
       description: detail,
-      priority_level: priority,
+      priority: priority,
       deadline: startDate
         .toISOString()
         .slice(0, 19)
