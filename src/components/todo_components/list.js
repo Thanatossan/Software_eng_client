@@ -16,7 +16,13 @@ const List = props => {
             </button>
           </div>
           <div class="column">
-            <div class="box" style={{ width: "400px" }}>
+            <div
+              class="box"
+              style={{
+                width: "400px",
+                backgroundColor: props.selected === task ? "#FFEAEA" : "#FFFFFF"
+              }}
+            >
               <div class="columns">
                 <div class="column is-12">
                   <div
@@ -27,6 +33,7 @@ const List = props => {
                     <p
                       onClick={() => {
                         props.selectTask(index);
+                        // selectColor(index);
                       }}
                     >
                       {" "}
