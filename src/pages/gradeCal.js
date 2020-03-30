@@ -1,7 +1,9 @@
 import React, { useState, useEffect, Fragment } from "react";
+import select from "react-select";
 const Gradecal = () => {
   var urlAPI = "https://reg-cmu-api.herokuapp.com/course/";
-
+  const [currentCredit, setCurrentCredit] = useState("");
+  const [currentGPA, setCurrentGPA] = useState("");
   const [inputFields, setInputFields] = useState([
     {
       courseID: ""
@@ -13,10 +15,14 @@ const Gradecal = () => {
       credit: ""
     }
   ]);
-
+  const [grades, Setgrades] = useState([
+    {
+      grade: ""
+    }
+  ]);
   const handleSubmit = e => {
     e.preventDefault();
-    // searchcoure(inputFields);
+    //calculate grade here
   };
   const handleInputChange = (index, event) => {
     const values = [...inputFields];
@@ -29,10 +35,13 @@ const Gradecal = () => {
   const handleAddFields = () => {
     const values = [...inputFields];
     const values2 = [...courseDetail];
+    const values3 = [...grades];
     values.push({ courseID: "" });
     values2.push({ courseName: "", credit: "" });
+    values3.push({ grade: "" });
     setInputFields(values);
     setCourseDetail(values2);
+    Setgrades(values3);
   };
 
   const handleRemoveFields = index => {
@@ -54,6 +63,12 @@ const Gradecal = () => {
         console.log(courseDetail);
       });
   };
+  const handleInputGrade = (index, e) => {
+    const values = [...grades];
+    console.log(e.target.value);
+    values[index].grade = e.target.value;
+    Setgrades(values);
+  };
   return (
     <>
       <div class="container">
@@ -61,7 +76,24 @@ const Gradecal = () => {
 
         <form onSubmit={handleSubmit}>
           <label for="lastGPA"> Current GPA : </label>
-          <input type="text" id="lastGPA" name="lastGOA"></input>
+          <input
+            type="text"
+            id="lastGPA"
+            name="lastGOA"
+            onChange={e => {
+              setCurrentGPA(e.target.value);
+            }}
+          ></input>
+
+          <label for="currentCredit"> Current Credit : </label>
+          <input
+            type="text"
+            id="currentCredit"
+            name="currentCredit"
+            onChange={e => {
+              setCurrentCredit(e.target.value);
+            }}
+          ></input>
           <br></br>
           <br></br>
           {inputFields.map((inputFields, index) => (
@@ -103,19 +135,31 @@ const Gradecal = () => {
                 <div class="column">
                   <p id="credit">{courseDetail[index].credit}</p>
                 </div>
-                <div class="column is-one-third">
+                <div class="column is-one-quarter">
                   <label for="expectGrade"> Grade: </label>
-                  <input
-                    type="text"
-                    id="expectGrade"
-                    className="form-control"
-                    name="expectGrade"
-                    style={{ width: "30px" }}
-                  ></input>
+                  <div class="select">
+                    <select onChange={e => handleInputGrade(index, e)}>
+                      <option value="" selected disabled hidden></option>
+                      <option value="4">A</option>
+                      <option value="3.5">B+</option>
+                      <option value="3">B</option>
+                      <option value="2.5">C+</option>
+                      <option value="2">C</option>
+                      <option value="1.5">D+</option>
+                      <option value="1.0">D</option>
+                      <option value="0">F</option>
+                      <option value="nan">W</option>
+                    </select>
+                  </div>
                 </div>
               </div>
             </Fragment>
           ))}
+          <div class="has-text-right" style={{ marginRight: "100px" }}>
+            <button class="button is-rounded" type="submit">
+              CALCULATE
+            </button>
+          </div>
         </form>
       </div>
     </>
