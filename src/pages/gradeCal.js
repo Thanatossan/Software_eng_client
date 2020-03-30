@@ -125,7 +125,7 @@ const Gradecal = () => {
                     value={inputFields.courseID}
                     onChange={e => handleInputChange(index, e)}
                   ></input>
-                  <button onClick={e => searchcoure(index)}>
+                  <button type="button" onClick={e => searchcoure(index)}>
                     {" "}
                     Searchcourse
                   </button>
