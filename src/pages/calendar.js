@@ -33,12 +33,9 @@ export default class calendar extends React.Component {
   render() {
     return (
       <div className="demo-app">
-        <div className="demo-app-top">
-          <button onClick={this.toggleWeekends}>toggle weekends</button>&nbsp;
-          <button onClick={this.gotoPast}>go to a date in the past</button>
-          &nbsp; (also, click a date/time to add an event)
-        </div>
         <div className="demo-app-calendar">
+          <br></br>
+          <br></br>
           <FullCalendar
             defaultView="dayGridMonth"
             header={{
@@ -51,6 +48,7 @@ export default class calendar extends React.Component {
             weekends={this.state.calendarWeekends}
             events={this.state.calendarEvents}
             dateClick={this.handleDateClick}
+            height="parent"
           />
         </div>
       </div>
