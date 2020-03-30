@@ -62,17 +62,23 @@ const AddTaskForm = ({ addTask }) => {
     <>
       <form onSubmit={handleSubmit}>
         <input
-          class="input"
+          class="input is-large is-rounded"
           type="text"
           placeholder="Add Task"
-          style={{ width: "400px" }}
+          style={{ width: "510px" }}
           value={value}
           onChange={e => setValue(e.target.value)}
         ></input>
-        <button class="button" type="submit">
-          {" "}
-          add
-        </button>
+        <div class="column" style={{ marginLeft: "470px" }}>
+          <button
+            class="button is-large has-text-white is-rounded has-text-right"
+            type="submit"
+            style={{ backgroundColor: "#ffc30b" }}
+          >
+            {" "}
+            add
+          </button>
+        </div>
       </form>
     </>
   );

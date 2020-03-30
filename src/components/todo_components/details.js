@@ -89,21 +89,24 @@ const Detail = props => {
         </div> */}
 
           <input
-            class="input"
+            class="input is-rounded is-large"
             type="text"
             // value={editedTask.title}
             onChange={e => setTitle(e.target.value)}
             // onChange={updateInputValue}
             id="title"
             defaultValue={checkNull(props.selected.title)}
+            style={({ borderRadius: "25px" }, { background: "#FFEAEA" })}
           ></input>
           <h2> Description</h2>
           <textarea
-            class="textarea"
+            class="textarea is-large is-rounded"
+            rows="5"
             type="text"
             id="description"
             onChange={e => setDetail(e.target.value)}
             defaultValue={checkNull(props.selected.description)}
+            style={{ background: "#FFEAEA" }}
           ></textarea>
           <h2> End Date </h2>
           <div class="columns">
@@ -158,9 +161,13 @@ const Detail = props => {
           <div class="has-text-right">
             {" "}
             <button
-              class="button"
+              class="button has-text-white is-rounded is-large"
+              style={
+                ({ marginRight: "10px" },
+                { color: "white" },
+                { backgroundColor: "#ffc30b" })
+              }
               type="submit"
-              style={{ marginRight: "10px" }}
             >
               {" "}
               save
