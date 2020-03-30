@@ -118,10 +118,10 @@ const Todolist = () => {
   };
   const selectTask = index => {
     const newTask = [...tasks];
-    setSelect(true);
+    // setSelect(true);
     select(newTask[index]);
     setAware(!awareSelect);
-    console.log(selected);
+    // console.log(selected);
   };
   if (isReload) return <DisappearedLoading />;
   else

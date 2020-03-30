@@ -30,7 +30,6 @@ const Detail = props => {
         .replace("T", " ")
     });
   }, [
-    props.isSelect,
     detail,
     id,
     priority,
@@ -44,7 +43,7 @@ const Detail = props => {
     title
   ]);
   const handleSubmit = e => {
-    // e.preventDefault();
+    e.preventDefault();
     // const data = new FormData(e.target);
     // console.log(data);
     props.editTask();
