@@ -23,6 +23,7 @@ const Gradecal = () => {
   const handleSubmit = e => {
     e.preventDefault();
     //calculate grade here
+    alert("เสร็จภายในคือนนี้นาจา");
   };
   const handleInputChange = (index, event) => {
     const values = [...inputFields];
