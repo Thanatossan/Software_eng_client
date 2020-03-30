@@ -19,17 +19,37 @@ import timeGridPlugin from "@fullcalendar/timegrid";
 import interactionPlugin from "@fullcalendar/interaction"; // needed for dayClick
 
 import "../components/calendar_components/main.scss";
-
+var url = "http://13.76.181.113/api/calendar/topic/";
+var url2 = "http://13.76.181.113/api/calendar/created/";
+var studentCode = "600610780";
 export default class calendar extends React.Component {
   calendarComponentRef = React.createRef();
   state = {
     calendarWeekends: true,
     calendarEvents: [
       // initial event data
-      { title: "Event Now", start: new Date() }
+      { id: "", title: "", start: "" }
     ]
   };
-
+  componentDidMount() {
+    fetch(url + studentCode)
+      .then(response => response.json())
+      .then(jsonData => {
+        this.setState({ calendarEvents: jsonData });
+        // console.log(jsonData);
+        // this.setState({
+        //   // add new event data
+        //   calendarEvents: this.state.calendarEvents.concat({
+        //     // creates a new array
+        //     id: jsonData.id,
+        //     title: jsonData.title,
+        //     // start: this.changeDateSql(jsonData.startDate)
+        //     start: jsonData.startDate
+        //     // allDay: this.changeDateSql(jsonData.endDate)
+        //   })
+        // });
+      });
+  }
   render() {
     return (
       <div className="demo-app">
@@ -49,12 +69,34 @@ export default class calendar extends React.Component {
             events={this.state.calendarEvents}
             dateClick={this.handleDateClick}
             height="parent"
+            editable="true"
+            droppable="true"
           />
         </div>
+        {/* <form onSubmit={this.handleSubmit}>
+          <button type="submit"> Save</button>
+        </form> */}
       </div>
     );
   }
-
+  // changeDateSql = date => {
+  //   var jsDate = date
+  //     .toISOString()
+  //     .slice(0, 19)
+  //     .replace("T", " ");
+  //   return jsDate;
+  // };
+  // handleSubmit = e => {
+  //   e.preventDefault();
+  //   console.log(this.state.calendarEvents);
+  //   fetch(url2 + studentCode, {
+  //     method: "POST",
+  //     headers: {
+  //       "Content-Type": "application/json"
+  //     },
+  //     body: JSON.stringify(this.setState.calendarEvents)
+  //   });
+  // };
   toggleWeekends = () => {
     this.setState({
       // update a property
@@ -69,12 +111,17 @@ export default class calendar extends React.Component {
 
   handleDateClick = arg => {
     // eslint-disable-next-line no-restricted-globals
-    if (confirm("Would you like to add an event to " + arg.dateStr + " ?")) {
+    var newEvent = prompt(
+      "Create an event in " + arg.dateStr + "\n Enter title"
+    );
+
+    if (newEvent) {
       this.setState({
         // add new event data
         calendarEvents: this.state.calendarEvents.concat({
           // creates a new array
-          title: "New Event",
+          id: "",
+          title: newEvent,
           start: arg.date,
           allDay: arg.allDay
         })
