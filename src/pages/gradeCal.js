@@ -2,6 +2,8 @@ import React, { useState, useEffect, Fragment } from "react";
 import select from "react-select";
 const Gradecal = () => {
   var urlAPI = "https://reg-cmu-api.herokuapp.com/course/";
+  const [expectedGrade, setExpectedgrade] = useState("");
+  const [expectedCredit, setExpectedCredit] = useState("");
   const [currentCredit, setCurrentCredit] = useState("");
   const [currentGPA, setCurrentGPA] = useState("");
   const [inputFields, setInputFields] = useState([
@@ -23,6 +25,36 @@ const Gradecal = () => {
   const handleSubmit = e => {
     e.preventDefault();
     //calculate grade here
+    var overallcredit = 0;
+    var overallgrade = 0;
+    var nextgrade = 0;
+    var nextCredit = 0;
+    var expectGrade = 0;
+    grades.forEach((item, index) => {
+      if (grades[index].grade === "-1") {
+        console.log("W");
+      } else {
+        nextgrade += parseFloat(grades[index].grade);
+        nextCredit += parseInt(courseDetail[index].credit);
+      }
+    });
+
+    overallcredit = parseInt(currentCredit) + nextCredit;
+    overallgrade = parseFloat(currentGPA) * parseInt(currentCredit) + nextgrade;
+    if (!isNaN(overallcredit) && !isNaN(overallgrade)) {
+      // expectGrade = Math.round(
+      //   ((overallgrade / overallcredit + Number.EPSILON) * 100) / 100
+      // );
+      expectGrade = overallgrade / overallcredit;
+      expectGrade = expectGrade.toFixed(2);
+      setExpectedgrade(expectGrade);
+      setExpectedCredit(overallcredit);
+    }
+    console.log(overallcredit);
+    console.log(overallgrade);
+    // expectGrade = Math.round(
+    //   ((overallgrade / overallcredit + Number.EPSILON) * 100) / 100
+    // );
   };
   const handleInputChange = (index, event) => {
     const values = [...inputFields];
@@ -148,7 +180,7 @@ const Gradecal = () => {
                       <option value="1.5">D+</option>
                       <option value="1.0">D</option>
                       <option value="0">F</option>
-                      <option value="nan">W</option>
+                      <option value="-1">W</option>
                     </select>
                   </div>
                 </div>
@@ -161,6 +193,14 @@ const Gradecal = () => {
             </button>
           </div>
         </form>
+        {isNaN(expectedGrade) || expectedGrade === "" ? (
+          <div></div>
+        ) : (
+          <div>
+            <h2>Grade Expected : {expectedGrade}</h2>
+            <h2>Credit : {expectedCredit} </h2>
+          </div>
+        )}
       </div>
     </>
   );
