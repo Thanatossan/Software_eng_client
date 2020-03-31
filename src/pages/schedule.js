@@ -3,9 +3,9 @@ import React, { useState, useEffect } from "react";
 const schedule = () => {
   return (
     <React.Fragment>
-      <div class="container columns">
-        <div class="column">
-          <h1>SUBJECT SCHEDULE</h1>
+      <div class="container ">
+        <h1>SUBJECT SCHEDULE</h1>
+        <div style={{ marginLeft: "300px" }}>
           <table id="customers">
             <tr>
               <td>
@@ -37,7 +37,9 @@ const schedule = () => {
             </tr>
             <tr>
               <td>207115</td>
-              <td>Physics Laboratory for Engineering and Agro-Industry Students 1</td>
+              <td>
+                Physics Laboratory for Engineering and Agro-Industry Students 1
+              </td>
               <td>1(0-3-0)</td>
             </tr>
             <tr>
@@ -62,7 +64,10 @@ const schedule = () => {
             </tr>
             <tr>
               <td></td>
-              <td>General Education of Science and Mathematics or Humanities and Social Sciences</td>
+              <td>
+                General Education of Science and Mathematics or Humanities and
+                Social Sciences
+              </td>
               <td>3</td>
             </tr>
             <tr>
@@ -96,7 +101,9 @@ const schedule = () => {
             </tr>
             <tr>
               <td>207116</td>
-              <td>Physics Laboratory for Engineering and Agro-Industry Students 2</td>
+              <td>
+                Physics Laboratory for Engineering and Agro-Industry Students 2
+              </td>
               <td>1(0-3-0)</td>
             </tr>
             <tr>
@@ -106,7 +113,10 @@ const schedule = () => {
             </tr>
             <tr>
               <td></td>
-              <td>General Education of Science and Mathematics or Humanities and Social Sciences</td>
+              <td>
+                General Education of Science and Mathematics or Humanities and
+                Social Sciences
+              </td>
               <td>6</td>
             </tr>
             <tr>
@@ -114,9 +124,7 @@ const schedule = () => {
               <td></td>
               <td>19</td>
             </tr>
-          </table>
-          
-          <table id="customers">
+
             <tr>
               <td>
                 <th>SECOND YEAR</th>
@@ -219,9 +227,7 @@ const schedule = () => {
               <td></td>
               <td>18</td>
             </tr>
-          </table>
 
-          <table id="customers">
             <tr>
               <td>
                 <th>THIRD YEAR</th>
@@ -262,7 +268,10 @@ const schedule = () => {
             </tr>
             <tr>
               <td></td>
-              <td>General Education of Science and Mathematics or Humanities and Social Sciences</td>
+              <td>
+                General Education of Science and Mathematics or Humanities and
+                Social Sciences
+              </td>
               <td>6</td>
             </tr>
             <tr>
@@ -314,9 +323,7 @@ const schedule = () => {
               <td></td>
               <td>19</td>
             </tr>
-          </table>
 
-            <table id="customers">
             <tr>
               <td>
                 <th>FORTH YEAR</th>
@@ -389,10 +396,8 @@ const schedule = () => {
               <td></td>
               <td>10</td>
             </tr>
-
           </table>
         </div>
-        <div class="column"></div>
       </div>
     </React.Fragment>
   );
