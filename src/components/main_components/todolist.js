@@ -3,7 +3,7 @@ import "./css/todolist.css";
 const todo = () => {
   return (
     <>
-      <h1> TO DO LIST</h1>
+      <h1> TO DO LISE</h1>
     </>
   );
 };
