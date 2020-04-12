@@ -1,5 +1,5 @@
 import React from "react";
-import { Route, NavLink } from "react-router-dom";
+import { Route} from "react-router-dom";
 import Navbar from "./components/main_components/navbar";
 import Home from "./pages/Home";
 import "./App.css";
