@@ -1,32 +1,44 @@
 import React from "react";
 import "./css/navbar.css";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 const navbar = () => {
+  // function nongNavbar(){
+
+  // }
+
   return (
     <>
-      <nav class="navbar" role="navigation" aria-label="main navigation">
-        <div class="navbar-menu nav-center">
-          <Link to="/" class="navbar-item navbar-tab-hover-color">
+      <nav class="navbar navbar-inner is-active" role="navigation" aria-label="main navigation">
+        <div class="navbar-menu nav-center fontsize" id="myDemo">
+          <NavLink id="link" exact to="/" class="" activeClassName="myactive">
             HOME
-          </Link>
-          <Link to="/todolist" class="navbar-item leftborder">
+              </NavLink>
+          <NavLink id="link" to="/todolist" class="" activeClassName="myactive" >
             TO DO LIST
-          </Link>
-          <Link to="/calendar" class="navbar-item leftborder">
+              </NavLink>
+              
+          <NavLink id="link" to="/calendar" class="" activeClassName="myactive">
             CALENDAR
-          </Link>
-          <Link to="/gradecal" class="navbar-item leftborder">
+              </NavLink>
+          <NavLink id="link" to="/gradecal" class="" activeClassName="myactive">
             GRADE CALCULATE
-          </Link>
-          <Link to="/schedule" class="navbar-item leftborder">
+              </NavLink>
+          <NavLink id="link" to="/schedule" class="" activeClassName="myactive">
             SUBJECT SCHEDULE
-          </Link>
-          <Link to="/" class="navbar-item leftborder">
+              </NavLink>
+          <NavLink id="link" exact to="/" class="" activeClassName="myactive">
             OBJECTIVE
-          </Link>
-          <Link to="/account" class="navbar-item leftborder">
+              </NavLink>
+          <NavLink id="link" to="/account" class="" activeClassName="myactive">
             ACCOUNT
-          </Link>
+              </NavLink> 
+              {/* <a href="/" class="navbar-item navbar-tab-hover-color">HOME</a>
+              <a href="/todolist" class="navbar-item leftborder">TO DO LIST</a>
+              <a href="/calendar" class="navbar-item leftborder">CALENDAR</a>
+              <a href="/gradecal" class="navbar-item leftborder">GRADE CALCULATE</a>
+              <a href="/schedule" class="navbar-item leftborder">SUBJECT SCHEDULE</a>
+              <a href="/" class="navbar-item leftborder">OBJECTIVE</a>
+              <a href="/account" class="navbar-item leftborder">ACCOUNT</a> */}
         </div>
       </nav>
     </>
