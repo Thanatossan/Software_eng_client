@@ -9,3 +9,29 @@
 .navbar-item-hover-color {
     background-color: #CEC6C6;
 }
+
+.navbar-inner{
+    height: 60px;
+}
+
+.fontsize {
+    font-size: 20px;
+}
+#link{
+    align-items: center;
+    display: flex;
+}
+.myactive{
+    background-color: rgb(172, 58, 58);
+    color: white;
+  }
+/* #link:active{
+    background-color: rgb(172, 58, 58);
+    color: white;
+} */
+/* a:active{
+    background-color: red;
+    background-color: yellow;
+    border-bottom: 0.4rem solid teal;
+    cursor: not-allowed;
+} */
