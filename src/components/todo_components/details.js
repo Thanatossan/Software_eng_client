@@ -89,24 +89,22 @@ const Detail = props => {
         </div> */}
 
           <input
-            class="input is-rounded is-large"
+            class="input is-large"
             type="text"
             // value={editedTask.title}
             onChange={e => setTitle(e.target.value)}
             // onChange={updateInputValue}
             id="title"
             defaultValue={checkNull(props.selected.title)}
-            style={({ borderRadius: "25px" }, { background: "#FFEAEA" })}
           ></input>
           <h2> Description</h2>
           <textarea
-            class="textarea is-large is-rounded"
+            class="textarea is-large"
             rows="5"
             type="text"
             id="description"
             onChange={e => setDetail(e.target.value)}
             defaultValue={checkNull(props.selected.description)}
-            style={{ background: "#FFEAEA" }}
           ></textarea>
           <h2> End Date </h2>
           <div class="columns">
@@ -116,7 +114,7 @@ const Detail = props => {
             </div>
             <div class="column">
               <p>{defaultTime(props.selected.deadline)} </p>
-              <DatePicker
+              <DatePicker id="date"
                 dateFormat="yyyy/MM/dd"
                 showPopperArrow={false}
                 selected={startDate}
@@ -130,45 +128,20 @@ const Detail = props => {
           <div class="columns">
             <div class="column">
               {" "}
-              <p> priority</p>
+              <p> Priority</p>
               <h5> Edit priority</h5>
             </div>
             <div class="column">
-              <Rating
-                name="read-only"
-                value={props.selected.priority_level}
-                onChange={(event, newValue) => {
-                  setpriority(newValue);
-                }}
-                readOnly
-              />
+              <Rating name="read-only" value={props.selected.priority_level} onChange={(event, newValue) => {setpriority(newValue);}} readOnly/>
               <br></br>
               <div style={{ marginTop: "20px" }}>
-                <Rating
-                  name="simple-controlled"
-                  value={priority}
-                  onChange={(event, newValue) => {
-                    setpriority(newValue);
-                  }}
-                />
+                <Rating name="simple-controlled" value={priority} onChange={(event, newValue) => {setpriority(newValue);}}/>
               </div>
             </div>
-
-            <br></br>
-
-            <br></br>
           </div>
           <div class="has-text-right">
             {" "}
-            <button
-              class="button has-text-white is-rounded is-large"
-              style={
-                ({ marginRight: "10px" },
-                { color: "white" },
-                { backgroundColor: "#ffc30b" })
-              }
-              type="submit"
-            >
+            <button class="button has-text-white is-rounded is-large" style={({ marginRight: "10px" },{ color: "white" },{ backgroundColor: "#ffc30b" })} type="submit">
               {" "}
               save
             </button>

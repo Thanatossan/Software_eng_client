@@ -5,3 +5,26 @@
 .todo-completed {
     text-decoration: line-through;
 }
+#trash{
+    border-radius: 25px;
+    width: 35px;
+    height: 35px;
+}
+#trashbox{
+    border-radius: 25px;
+    width: 450px;
+    /* background-color: #fff5f5; */
+}
+#trashbox:hover{
+    color: #FFEAEA;
+}
+#addtask{
+    border-radius: 25px;
+    width: 490px;
+    padding-left: 50px;
+    
+}
+#addtask:focus{
+    background-color: #fff9f9;
+    border: solid #f5cfcf;
+}

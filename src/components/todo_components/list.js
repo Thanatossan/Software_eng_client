@@ -16,33 +16,19 @@ const List = props => {
             </button>
           </div>
           <div class="column">
-            <div
-              class="box"
-              style={{
-                width: "400px",
-                backgroundColor: props.selected === task ? "#FFEAEA" : "#FFFFFF"
-              }}
-            >
+            <div id="trashbox" class="box" style={{backgroundColor: props.selected === task ? "#FFEAEA" : "#fff9f9"}}>
               <div class="columns">
                 <div class="column is-12">
-                  <div
-                    class={
-                      task.isComplete ? "todo-text todo-completed" : "todo-text"
-                    }
-                  >
-                    <p
-                      onClick={() => {
-                        props.selectTask(index);
-                        // selectColor(index);
-                      }}
-                    >
+                  <div class={task.isComplete ? "todo-text todo-completed" : "todo-text"}>
+                    <p class="subtitle is-4" onClick={() => {props.selectTask(index); // selectColor(index);
+                      }}>
                       {" "}
                       {task.title}
                     </p>
                   </div>
                 </div>
-                <div class="column">
-                  <button onClick={() => props.removeTask(index)}>
+                <div class="column" style={{padding: "5px"}}>
+                  <button onClick={() => props.removeTask(index)} id="trash" >
                     <i class="fas fa-trash-alt"></i>
                   </button>
                 </div>
@@ -68,24 +54,19 @@ const AddTaskForm = ({ addTask }) => {
   return (
     <>
       <form onSubmit={handleSubmit}>
-        <input
-          class="input is-large is-rounded"
-          type="text"
-          placeholder="Add Task"
-          style={{ width: "510px" }}
-          value={value}
-          onChange={e => setValue(e.target.value)}
-        ></input>
-        <div class="column" style={{ marginLeft: "470px" }}>
-          <button
-            class="button is-large has-text-white is-rounded has-text-right"
-            type="submit"
-            style={{ backgroundColor: "#ffc30b" }}
-          >
-            {" "}
+        <ul>
+          <li id="addtask">
+            <input  class="input is-large is-rounded" type="text" placeholder="Add Task" value={value} onChange={e => setValue(e.target.value)} ></input>
+          </li>
+          <li style={{paddingLeft: "10px"}}>
+            {/* <div class="column" style={{ marginLeft: "470px" }}> */}
+            <button id="bt"class="button is-large has-text-white is-rounded has-text-right" type="submit" style={{ backgroundColor: "#ffc30b" }} >
+              {" "}
             add
           </button>
-        </div>
+            {/* </div> */}
+          </li>
+        </ul>
       </form>
     </>
   );
