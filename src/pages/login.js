@@ -7,13 +7,7 @@ const Login = () => {
                     <div class="box" style={{borderRadius: "25px"}}>
                             <div class="card-content">
                                 <p class="title is-1">SIGN IN</p>
-                                <div class="content" >
-                                    <input style={{background: "#FFEAEA"}} class="input is-rounded is-large" type="text" placeholder="Username"></input>
-                                </div>
-                                <div class="content">
-                                    <input style={{background: "#FFEAEA"}} class="input is-rounded is-large" type="text" placeholder="Password"></input>
-                                </div>
-                                <button style={{ backgroundColor: "#ffc30b"}} class="button is-large has-text-white">LOGIN</button>
+                                <button style={{ backgroundColor: "#ffc30b"}} class="button is-large has-text-white">Login with CMU Account</button>
                             </div>
                     </div>
                 </div>
