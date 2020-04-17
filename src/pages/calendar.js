@@ -28,13 +28,17 @@ export default class calendar extends React.Component {
     calendarWeekends: true,
     calendarEvents: [
       // initial event data
-      { id: "", title: "", start: "" }
-    ]
+      { id: "", title: "", start: "" },
+    ],
+    empty: [
+      // initial event data
+      { id: "", title: "", start: "" },
+    ],
   };
   componentDidMount() {
     fetch(url + studentCode)
-      .then(response => response.json())
-      .then(jsonData => {
+      .then((response) => response.json())
+      .then((jsonData) => {
         this.setState({ calendarEvents: jsonData });
         // console.log(jsonData);
         // this.setState({
@@ -61,21 +65,31 @@ export default class calendar extends React.Component {
             header={{
               left: "prev,next today",
               center: "title",
-              right: "dayGridMonth,timeGridWeek,timeGridDay,listWeek"
+              right: "dayGridMonth,timeGridWeek,timeGridDay,listWeek",
             }}
             plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin]}
             ref={this.calendarComponentRef}
             weekends={this.state.calendarWeekends}
             events={this.state.calendarEvents}
             dateClick={this.handleDateClick}
+            eventClick={this.handleEventClick}
             height="parent"
             editable="true"
             droppable="true"
           />
         </div>
-        {/* <form onSubmit={this.handleSubmit}>
-          <button type="submit"> Save</button>
-        </form> */}
+        <div align="center">
+          <form onClick={this.handleClick}>
+            <button type="reset" className="resetBTN">
+              ResetEvent
+            </button>
+          </form>
+          <form onClick={this.handleClicky}>
+            <button type="reset" className="resetBTN">
+              RemoveNewestEvent
+            </button>
+          </form>
+        </div>
       </div>
     );
   }
@@ -100,7 +114,7 @@ export default class calendar extends React.Component {
   toggleWeekends = () => {
     this.setState({
       // update a property
-      calendarWeekends: !this.state.calendarWeekends
+      calendarWeekends: !this.state.calendarWeekends,
     });
   };
 
@@ -109,7 +123,7 @@ export default class calendar extends React.Component {
     calendarApi.gotoDate("2000-01-01"); // call a method on the Calendar object
   };
 
-  handleDateClick = arg => {
+  handleDateClick = (arg) => {
     // eslint-disable-next-line no-restricted-globals
     var newEvent = prompt(
       "Create an event in " + arg.dateStr + "\n Enter title"
@@ -123,8 +137,55 @@ export default class calendar extends React.Component {
           id: "",
           title: newEvent,
           start: arg.date,
-          allDay: arg.allDay
-        })
+          allDay: arg.allDay,
+        }),
+      });
+    }
+  };
+
+  handleEventClick = (arg) => {
+    // eslint-disable-next-line no-restricted-globals
+    //console.log(arg);
+    //console.log(this.state.calendarEvents);
+    /*
+    var delEvent = window.confirm(
+      "Would you like to delete " + arg.event.title
+    );
+
+    if (delEvent) {
+      this.setState({
+        //copyCalendarEvents: this.state.calendarEvents.splice(1, 1),
+        calendarEvents: this.state.calendarEvents.slice(
+          0,
+          this.state.calendarEvents.length - 1
+        ),
+      });
+    }
+    */
+  };
+
+  handleClick = () => {
+    var delEvent = window.confirm("Would you like to remove all events");
+
+    if (delEvent) {
+      this.setState({
+        //calendarEvents: this.state.calendarEvents.splice(0, 1),
+        calendarEvents: this.state.empty,
+      });
+    }
+  };
+
+  handleClicky = (arg) => {
+    // eslint-disable-next-line no-restricted-globals
+    var delEvent = window.confirm("Would you like to remove newest event");
+
+    if (delEvent) {
+      this.setState({
+        //copyCalendarEvents: this.state.calendarEvents.splice(1, 1),
+        calendarEvents: this.state.calendarEvents.slice(
+          0,
+          this.state.calendarEvents.length - 1
+        ),
       });
     }
   };
