@@ -9,20 +9,47 @@ import schedule from "./pages/schedule";
 import gradeCal from "./pages/gradeCal";
 import account from "./pages/account";
 import redirector from "./pages/redirector";
-
-const App = () => {
+import ProtectedRoute from "./components/main_components/ProtectedRoute";
+import { connect } from "react-redux";
+const mapStateToProps = function (state) {
+  return {
+    message: "This is message from mapStateToProps",
+    student_code: state.student_code,
+  };
+};
+const App = ({ student_code }) => {
   return (
     <React.Fragment>
       <Navbar />
       <Route path="/callback" component={redirector} />
-      <Route exact path="/account" component={account} />
+      <Route exact path="/account" user={student_code} component={account} />
       <Route exact path="/" component={Home} />
-      <Route exact path="/todolist" component={todolist} />
-      <Route exact path="/calendar" component={calendar} />
-      <Route exact path="/schedule" component={schedule} />
-      <Route exact path="/gradecal" component={gradeCal} />
+      <ProtectedRoute
+        exact
+        user={student_code}
+        path="/todolist"
+        component={todolist}
+      />
+      <ProtectedRoute
+        exact
+        path="/calendar"
+        user={student_code}
+        component={calendar}
+      />
+      <ProtectedRoute
+        exact
+        path="/schedule"
+        user={student_code}
+        component={schedule}
+      />
+      <ProtectedRoute
+        exact
+        path="/gradecal"
+        user={student_code}
+        component={gradeCal}
+      />
     </React.Fragment>
   );
 };
-
-export default App;
+const AppWithConnect = connect(mapStateToProps)(App);
+export default AppWithConnect;

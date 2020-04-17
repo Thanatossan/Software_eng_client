@@ -1,17 +1,24 @@
 import React, { useState, useEffect } from "react";
 import { DisappearedLoading } from "react-loadingg";
+import { connect } from "react-redux";
 // import Sidebar from "../components/todo_components/sidebar";
 import List from "../components/todo_components/list";
 import Detail from "../components/todo_components/details";
 import "../components/todo_components/css/todolist.css";
 
 // import "../components/todo_components/css/divider.sass";
-var url_show = "http://13.76.181.113/api/todolist/showtitle";
+var url_show = "http://13.76.181.113/api/todolist/showtitle/";
 var url_delete = "http://13.76.181.113/api/todolist/deleted";
-var url_added = "http://13.76.181.113/api/todolist/added";
-var studentid = "/600610781";
-
-const Todolist = () => {
+var url_added = "http://13.76.181.113/api/todolist/added/";
+var url_toggle = "http://13.76.181.113:4000/api/todolist/tickcommand/";
+const mapStateToProps = function (state) {
+  return {
+    message: "This is message from mapStateToProps",
+    student_code: state.student_code,
+  };
+};
+const Todolist = ({ student_code }) => {
+  var studentid = student_code;
   const [isReload, setReload] = useState(false);
   const [awareSelect, setAware] = useState(false);
   const [isSelect, setSelect] = useState(false);
@@ -51,7 +58,7 @@ const Todolist = () => {
         });
         setReload(false);
       });
-  }, [isReload]);
+  }, [isReload, studentid]);
 
   const editTask = () => {
     setReload(true);
@@ -85,7 +92,15 @@ const Todolist = () => {
     const newTask = [...tasks];
     newTask[index].isComplete = !newTask[index].isComplete;
     setTasks(newTask);
+    fetch(url_toggle + newTask[index].Todolist_id, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(newTask[index].isComplete),
+    });
   };
+
   const removeTask = (index) => {
     const newTask = [...tasks];
     if (selected === newTask[index]) {
@@ -145,5 +160,5 @@ const Todolist = () => {
       </>
     );
 };
-
-export default Todolist;
+const TodolistWithConnect = connect(mapStateToProps)(Todolist);
+export default TodolistWithConnect;

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "./css/list.css";
-const List = props => {
+const List = (props) => {
   return (
     <>
       <h1> TO DO LIST</h1>
@@ -20,7 +20,8 @@ const List = props => {
               class="box"
               style={{
                 width: "400px",
-                backgroundColor: props.selected === task ? "#FFEAEA" : "#FFFFFF"
+                backgroundColor:
+                  props.selected === task ? "#FFEAEA" : "#FFFFFF",
               }}
             >
               <div class="columns">
@@ -60,7 +61,7 @@ export default List;
 const AddTaskForm = ({ addTask }) => {
   const [value, setValue] = useState("");
 
-  const handleSubmit = e => {
+  const handleSubmit = (e) => {
     e.preventDefault();
     value && addTask(value);
     setValue("");
@@ -74,7 +75,7 @@ const AddTaskForm = ({ addTask }) => {
           placeholder="Add Task"
           style={{ width: "510px" }}
           value={value}
-          onChange={e => setValue(e.target.value)}
+          onChange={(e) => setValue(e.target.value)}
         ></input>
         <div class="column" style={{ marginLeft: "470px" }}>
           <button
