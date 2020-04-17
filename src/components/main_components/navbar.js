@@ -1,7 +1,7 @@
 import React from "react";
 import "./css/navbar.css";
 import { Link } from "react-router-dom";
-const navbar = () => {
+const navbar = ({ login }) => {
   return (
     <>
       <nav class="navbar" role="navigation" aria-label="main navigation">
@@ -21,10 +21,7 @@ const navbar = () => {
           <Link to="/schedule" class="navbar-item leftborder">
             SUBJECT SCHEDULE
           </Link>
-          <Link to="/" class="navbar-item leftborder">
-            OBJECTIVE
-          </Link>
-          <Link to="/" class="navbar-item leftborder">
+          <Link to="/account" class="navbar-item leftborder">
             ACCOUNT
           </Link>
         </div>

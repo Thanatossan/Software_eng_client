@@ -1,13 +1,14 @@
 import React from "react";
-import Todolist from "../components/main_components/todolist";
 const Home = () => {
   return (
     <React.Fragment>
       <div class="container columns">
         <div class="column">
-          <Todolist />
+          <a href="https://oauth.cmu.ac.th/v1/Authorize.aspx?response_type=code&client_id=g3xcpyFcFNHH7g65uyxJJg7PXQWjjUCR47makKkd&redirect_uri=http://localhost:3000/callback&scope=cmuitaccount.basicinfo&state=xyz">
+            {" "}
+            login here{" "}
+          </a>
         </div>
-        <div class="column"></div>
       </div>
     </React.Fragment>
   );

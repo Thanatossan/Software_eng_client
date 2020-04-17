@@ -4,6 +4,7 @@ import { DisappearedLoading } from "react-loadingg";
 import List from "../components/todo_components/list";
 import Detail from "../components/todo_components/details";
 import "../components/todo_components/css/todolist.css";
+
 // import "../components/todo_components/css/divider.sass";
 var url_show = "http://13.76.181.113/api/todolist/showtitle";
 var url_delete = "http://13.76.181.113/api/todolist/deleted";
@@ -22,8 +23,8 @@ const Todolist = () => {
       isComplete: "",
       description: "",
       priority_level: 0,
-      deadline: new Date()
-    }
+      deadline: new Date(),
+    },
   ]);
 
   const [selected, select] = useState({
@@ -32,16 +33,13 @@ const Todolist = () => {
     isComplete: false,
     description: "",
     priority_level: 0,
-    deadline: new Date()
-      .toISOString()
-      .slice(0, 19)
-      .replace("T", " ")
+    deadline: new Date().toISOString().slice(0, 19).replace("T", " "),
   });
 
   useEffect(() => {
     fetch(url_show + studentid)
-      .then(Response => Response.json())
-      .then(jsonData => {
+      .then((Response) => Response.json())
+      .then((jsonData) => {
         setTasks(jsonData);
         select({
           Todolist_id: "",
@@ -49,10 +47,7 @@ const Todolist = () => {
           isComplete: false,
           description: "",
           priority_level: 0,
-          deadline: new Date()
-            .toISOString()
-            .slice(0, 19)
-            .replace("T", " ")
+          deadline: new Date().toISOString().slice(0, 19).replace("T", " "),
         });
         setReload(false);
       });
@@ -62,39 +57,36 @@ const Todolist = () => {
     setReload(true);
     // const newTask = [...tasks];
   };
-  const addTask = title => {
+  const addTask = (title) => {
     setReload(true);
     const newTask = {
       Todolist_id: "",
       title: title,
       isComplete: false,
       description: "",
-      deadline: new Date()
-        .toISOString()
-        .slice(0, 19)
-        .replace("T", " ")
+      deadline: new Date().toISOString().slice(0, 19).replace("T", " "),
     };
     var post_data = {
       title: title,
-      isComplete: 0
+      isComplete: 0,
     };
     fetch(url_added + studentid, {
       method: "POST",
       headers: {
-        "Content-Type": "application/json"
+        "Content-Type": "application/json",
       },
-      body: JSON.stringify(post_data)
+      body: JSON.stringify(post_data),
     });
 
     setTasks([...tasks, newTask]);
   };
 
-  const toggleTask = index => {
+  const toggleTask = (index) => {
     const newTask = [...tasks];
     newTask[index].isComplete = !newTask[index].isComplete;
     setTasks(newTask);
   };
-  const removeTask = index => {
+  const removeTask = (index) => {
     const newTask = [...tasks];
     if (selected === newTask[index]) {
       select({
@@ -103,21 +95,18 @@ const Todolist = () => {
         isComplete: false,
         description: "",
         priority_level: 0,
-        deadline: new Date()
-          .toISOString()
-          .slice(0, 19)
-          .replace("T", " ")
+        deadline: new Date().toISOString().slice(0, 19).replace("T", " "),
       });
     }
     // console.log(newTask[index].Todolist_id);
     setReload(true);
     fetch(url_delete + "/" + newTask[index].Todolist_id, {
-      method: "delete"
+      method: "delete",
     });
     newTask.splice(index, 1);
     setTasks(newTask);
   };
-  const selectTask = index => {
+  const selectTask = (index) => {
     const newTask = [...tasks];
     // setSelect(true);
     select(newTask[index]);
