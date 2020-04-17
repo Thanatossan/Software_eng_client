@@ -132,16 +132,16 @@ const Detail = props => {
               <h5> Edit priority</h5>
             </div>
             <div class="column">
-              <Rating name="read-only" value={props.selected.priority_level} onChange={(event, newValue) => {setpriority(newValue);}} readOnly/>
+              <Rating size="large" name="read-only" value={props.selected.priority_level} onChange={(event, newValue) => { setpriority(newValue); }} readOnly />
               <br></br>
               <div style={{ marginTop: "20px" }}>
-                <Rating name="simple-controlled" value={priority} onChange={(event, newValue) => {setpriority(newValue);}}/>
+                <Rating size="large" name="simple-controlled" value={priority} onChange={(event, newValue) => { setpriority(newValue); }} />
               </div>
             </div>
           </div>
           <div class="has-text-right">
             {" "}
-            <button class="button has-text-white is-rounded is-large" style={({ marginRight: "10px" },{ color: "white" },{ backgroundColor: "#ffc30b" })} type="submit">
+            <button class="button has-text-white is-rounded is-large" style={({ marginRight: "10px" }, { color: "white" }, { backgroundColor: "#ffc30b" })} type="submit">
               {" "}
               save
             </button>

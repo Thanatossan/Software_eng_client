@@ -1,15 +1,22 @@
 import React, { useState } from "react";
 import "./css/list.css";
+import Rating from "@material-ui/lab/Rating";
+var url = "http://13.76.181.113/api/todolist/updated/";
+// const [priority, setpriority] = useState(0);
 const List = props => {
+  
   return (
     <>
       <h1> TO DO LIST</h1>
       <div class="has-text-right">
-      <div class="select is-rounded">
-        <select class="is-hover">
-          <option>Select Priority</option>
-        </select>
-      </div>
+        <div class="select is-rounded is-medium">
+          <select class="is-hover">
+            <option>Select Priority</option>
+            <option>
+            
+            </option>
+          </select>
+        </div>
       </div>
       <br></br>
       {props.tasks.map((task, index) => (
