@@ -21,10 +21,7 @@ const navbar = () => {
           <Link to="/schedule" class="navbar-item leftborder">
             SUBJECT SCHEDULE
           </Link>
-          <Link to="/" class="navbar-item leftborder">
-            OBJECTIVE
-          </Link>
-          <Link to="/" class="navbar-item leftborder">
+          <Link to="/account" class="navbar-item leftborder">
             ACCOUNT
           </Link>
         </div>
