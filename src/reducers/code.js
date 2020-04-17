@@ -3,7 +3,7 @@ export default (state = 0, { type, student_id }) => {
     case "LOGIN":
       return student_id;
     case "LOGOUT":
-      return null;
+      return 0;
     default:
       return state;
   }
