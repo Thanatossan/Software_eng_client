@@ -30,6 +30,10 @@ class calendar extends React.Component {
       // initial event data
       { id: "", title: "", start: "" },
     ],
+    empty: [
+      // initial event data
+      { id: "", title: "", start: "" },
+    ],
   };
 
   componentDidMount() {
@@ -37,7 +41,7 @@ class calendar extends React.Component {
       .then((response) => response.json())
       .then((jsonData) => {
         this.setState({ calendarEvents: jsonData });
-        console.log(jsonData);
+        // console.log(jsonData);
         // this.setState({
         //   // add new event data
         //   calendarEvents: this.state.calendarEvents.concat({
@@ -78,6 +82,18 @@ class calendar extends React.Component {
         {/* <form onSubmit={this.handleSubmit}>
           <button type="submit"> Save</button>
         </form> */}
+        <div align="center">
+          <form onClick={this.handleClick}>
+            <button type="reset" className="resetBTN button">
+              ResetEvent
+            </button>
+          </form>
+          <form onClick={this.handleClicky}>
+            <button type="reset" className="resetBTN button">
+              RemoveNewestEvent
+            </button>
+          </form>
+        </div>
       </div>
     );
   }
@@ -99,6 +115,35 @@ class calendar extends React.Component {
   //     body: JSON.stringify(this.setState.calendarEvents)
   //   });
   // };
+  handleClick = () => {
+    var delEvent = window.confirm("Would you like to remove all events");
+
+    if (delEvent) {
+      this.setState({
+        //calendarEvents: this.state.calendarEvents.splice(0, 1),
+        calendarEvents: this.state.empty,
+      });
+    }
+  };
+  handleClicky = (arg) => {
+    // eslint-disable-next-line no-restricted-globals
+    var delEvent = window.confirm("Would you like to remove newest event");
+    console.log(this.state.calendarEvents);
+    if (delEvent) {
+      /*
+      fetch(url3 + "/" + this.state.calendarEvents.length - 1, {
+        method: "delete",
+      });
+      */
+      this.setState({
+        //copyCalendarEvents: this.state.calendarEvents.splice(1, 1),
+        calendarEvents: this.state.calendarEvents.slice(
+          0,
+          this.state.calendarEvents.length - 1
+        ),
+      });
+    }
+  };
   toggleWeekends = () => {
     this.setState({
       // update a property
@@ -126,6 +171,16 @@ class calendar extends React.Component {
           title: newEvent,
           start: arg.date,
           allDay: arg.allDay,
+        }),
+      });
+      fetch(url2 + this.props.student_code, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          title: newEvent,
+          start: arg.date.toISOString().slice(0, 19).replace("T", " "),
         }),
       });
     }
