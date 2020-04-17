@@ -21,6 +21,7 @@ import interactionPlugin from "@fullcalendar/interaction"; // needed for dayClic
 import "../components/calendar_components/main.scss";
 var url = "http://13.76.181.113/api/calendar/topic/";
 var url2 = "http://13.76.181.113/api/calendar/created/";
+var url3 = "http://13.76.181.113/api/calendar/deleted/";
 var studentCode = "600610780";
 export default class calendar extends React.Component {
   calendarComponentRef = React.createRef();
@@ -130,6 +131,21 @@ export default class calendar extends React.Component {
     );
 
     if (newEvent) {
+      /*
+      var post_data = {
+        id: "",
+        title: "",
+        start: "",
+      };
+
+      fetch(url2 + studentCode, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(post_data),
+      });
+*/
       this.setState({
         // add new event data
         calendarEvents: this.state.calendarEvents.concat({
@@ -180,6 +196,11 @@ export default class calendar extends React.Component {
     var delEvent = window.confirm("Would you like to remove newest event");
 
     if (delEvent) {
+      /*
+      fetch(url3 + "/" + this.state.calendarEvents.length - 1, {
+        method: "delete",
+      });
+      */
       this.setState({
         //copyCalendarEvents: this.state.calendarEvents.splice(1, 1),
         calendarEvents: this.state.calendarEvents.slice(
