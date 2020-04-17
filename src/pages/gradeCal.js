@@ -30,25 +30,29 @@ const Gradecal = () => {
     var nextgrade = 0;
     var nextCredit = 0;
     var expectGrade = 0;
+    var sCredit = 0;
     grades.forEach((item, index) => {
       if (grades[index].grade === "-1") {
-        console.log("W");
-      } else {
-        nextgrade += parseFloat(grades[index].grade);
+        console.log("W or U");
+      }else if(grades[index].grade === "-2") {
+        sCredit += parseInt(courseDetail[index].credit);
+      }else {
+        nextgrade += parseFloat(grades[index].grade)*parseInt(courseDetail[index].credit);
         nextCredit += parseInt(courseDetail[index].credit);
       }
     });
 
-    overallcredit = parseInt(currentCredit) + nextCredit;
-    overallgrade = parseFloat(currentGPA) * parseInt(currentCredit) + nextgrade;
+    overallcredit = parseInt(currentCredit) + nextCredit ;
+    overallgrade = (parseFloat(currentGPA)*parseInt(currentCredit) + (nextgrade)) / overallcredit;
+    // overallcredit += sCredit;
     if (!isNaN(overallcredit) && !isNaN(overallgrade)) {
       // expectGrade = Math.round(
       //   ((overallgrade / overallcredit + Number.EPSILON) * 100) / 100
       // );
-      expectGrade = overallgrade / overallcredit;
+      expectGrade = overallgrade ;
       expectGrade = expectGrade.toFixed(2);
       setExpectedgrade(expectGrade);
-      setExpectedCredit(overallcredit);
+      setExpectedCredit(overallcredit+sCredit);
     }
     console.log(overallcredit);
     console.log(overallgrade);
@@ -180,7 +184,16 @@ const Gradecal = () => {
                       <option value="1.5">D+</option>
                       <option value="1.0">D</option>
                       <option value="0">F</option>
+
+                      {/* don't calculate W,U */}
+                      
                       <option value="-1">W</option>
+
+                      {/*only add credit(s)*/}
+                      <option value="-2">S</option> 
+
+                      <option value="-1">U</option>
+
                     </select>
                   </div>
                 </div>
