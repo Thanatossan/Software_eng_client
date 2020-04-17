@@ -14,7 +14,6 @@ const Todolist = () => {
   const [isReload, setReload] = useState(false);
   const [awareSelect, setAware] = useState(false);
   const [isSelect, setSelect] = useState(false);
-
   const [tasks, setTasks] = useState([
     {
       Todolist_id: "",
