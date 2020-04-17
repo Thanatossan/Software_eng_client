@@ -2,6 +2,15 @@
 @import "~@fullcalendar/daygrid/main.css";
 @import "~@fullcalendar/timegrid/main.css";
 
+.resetBTN {
+  font-family: Arial, Helvetica Neue, Helvetica, sans-serif;
+  font-size: 14px;
+  text-align: center;
+  background-color: pink;
+  color: gray;
+  margin-top: 10px;
+}
+
 .demo-app {
   font-family: Arial, Helvetica Neue, Helvetica, sans-serif;
   font-size: 14px;
