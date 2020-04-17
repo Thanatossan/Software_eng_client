@@ -17,13 +17,10 @@ const Home = () => {
 
       <div
         class="columns is-centered has-text-centered"
-        style={
-          ({ position: "absolute" },
-          { margin: "0" },
-          { transform: "translate(0%,50%)" })
-        }
+        style={({ position: "absolute" }, { margin: "0" })}
       >
         <div class="column is-half">
+          <h1> STUDY PLANNER FOR CMU STUDENT</h1>
           <div class="box" style={{ borderRadius: "25px" }}>
             <div class="card-content">
               <p class="title is-1">SIGN IN</p>
