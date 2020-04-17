@@ -97,7 +97,9 @@ const Todolist = ({ student_code }) => {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(newTask[index].isComplete),
+      body: JSON.stringify({
+        iscom: String(Number(newTask[index].isComplete)),
+      }),
     });
   };
 
