@@ -1,7 +1,7 @@
 import React from "react";
 import "./css/navbar.css";
 import { Link } from "react-router-dom";
-const navbar = () => {
+const navbar = ({ login }) => {
   return (
     <>
       <nav class="navbar" role="navigation" aria-label="main navigation">

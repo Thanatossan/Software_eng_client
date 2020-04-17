@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { Route } from "react-router-dom";
 import Navbar from "./components/main_components/navbar";
 import Home from "./pages/Home";
@@ -9,6 +9,7 @@ import schedule from "./pages/schedule";
 import gradeCal from "./pages/gradeCal";
 import account from "./pages/account";
 import redirector from "./pages/redirector";
+
 const App = () => {
   return (
     <React.Fragment>
